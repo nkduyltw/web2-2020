@@ -1,0 +1,31 @@
+
+/* header */
+
+.nav-link{
+    color: white !important;
+}
+.nav-link:hover{
+    color: rgb(63, 63, 63) !important;
+}
+
+
+
+
+
+
+
+
+
+
+/* footer */
+footer{
+    margin-top: 20px;
+}
+footer a{
+    color: white;
+    text-decoration: none !important;
+    font-weight: 500;
+}
+footer a:hover{
+    color: black;
+}
