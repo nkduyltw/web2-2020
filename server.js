@@ -26,6 +26,8 @@ app.use(cookieSession({
 //app use routes
 app.get('/',require('./routes/index'));
 app.use('/login',require('./routes/login'));
+app.use('/recharge',require('./routes/recharge'));
+app.use('/createUser',require('./routes/createUser'));
 
 db.sync().then(function(){
     app.listen(port, () => console.log(`Example app listening on port ${port}!`));

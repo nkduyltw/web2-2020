@@ -12,7 +12,7 @@ router.get('/', function getLogin(req,res){
 router.post('/', asyncHandler(async function (req,res){
     const accountNumber = req.body.accountNumber;
     const password = req.body.password;
-
+    const passwordHash = Account.hashPassword(password);
     const Acc = await Account.findAcc(accountNumber);
 
     
@@ -23,7 +23,7 @@ router.post('/', asyncHandler(async function (req,res){
         status=true;
     }
     else{
-        if(Acc.password == password){
+        if(Account.verifyPassword(password,passwordHash)){
             res.redirect('/');
         }
         else{

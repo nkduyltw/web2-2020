@@ -4,10 +4,13 @@
 .nav-link{
     color: white !important;
 }
+.navbar-brand{
+    font-weight: 600 !important;
+    color: white !important;
+}
 .nav-link:hover{
     color: rgb(63, 63, 63) !important;
 }
-
 
 
 

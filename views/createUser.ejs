@@ -1,0 +1,111 @@
+<%- include('header'); -%>
+    <div class="container">
+        <h1>Tạo tài khoản</h1>
+        <form method="post" class="needs-validation" novalidate>
+
+         <div class="form-group row">
+            <label for="example-text-input" class="col-2 col-form-label">CMND / CCCD :</label>
+            <div class="col-10">
+              <input class="form-control" <% if (identityCard != '') { %> value="<%= identityCard; %> "  <% } %>type="text" placeholder="Nhập số CNND / CCCD" id="example-text-input" name="identityCard" required>
+              <div class="valid-feedback">
+                Hợp lệ!.
+              </div>
+              <div class="invalid-feedback">
+                Xin diền đầy đủ thông tin!.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="example-text-input" class="col-2 col-form-label" >Họ và tên :</label>
+            <div class="col-10">
+              <input class="form-control"<% if (name != '') { %> value="<%= name; %> "  <% } %> type="text"  id="example-text-input" placeholder="Nhập họ và tên đầy đủ" name="name"required>
+              <div class="valid-feedback">
+                Hợp lệ!.
+              </div>
+              <div class="invalid-feedback">
+                Xin diền đầy đủ thông tin!.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="example-text-input" class="col-2 col-form-label" >Địa chỉ :</label>
+            <div class="col-10">
+              <input class="form-control"<% if (address != '') { %> value="<%= address; %> "  <% } %> type="text"  id="example-text-input" placeholder="Nhập địa chỉ" name="address"required>
+              <div class="valid-feedback">
+                Hợp lệ!.
+              </div>
+              <div class="invalid-feedback">
+                Xin diền đầy đủ thông tin!.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="example-email-input" class="col-2 col-form-label">Email :</label>
+            <div class="col-10">
+              <input class="form-control" type="email"<% if (email != '') { %> value="<%= email; %> "  <% } %> placeholder="Nhập email..." id="example-email-input" name="email"required>
+              <div class="valid-feedback">
+                Hợp lệ!.
+              </div>
+              <div class="invalid-feedback">
+                Xin diền đầy đủ thông tin!.
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="example-tel-input" class="col-2 col-form-label">Số điện thoại :</label>
+            <div class="col-10">
+              <input class="form-control" type="tel"<% if (phoneNumber != '') { %> value="<%= phoneNumber; %> "  <% } %> placeholder="Nhập số điện thoại" id="example-tel-input" name="phoneNumber"required>
+              <div class="valid-feedback">
+                Hợp lệ!.
+              </div>
+              <div class="invalid-feedback">
+                Xin diền đầy đủ thông tin!.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="example-date-input" class="col-2 col-form-label">Ngày sinh:</label>
+            <div class="col-10">
+              <input class="form-control" type="date" value="<%= dateOfBirth; %> " id="example-date-input" name="dateOfBirth"required>
+              <div class="valid-feedback">
+                Hợp lệ!.
+              </div>
+              <div class="invalid-feedback">
+                Xin diền đầy đủ thông tin!.
+              </div>
+            </div>
+          </div>
+        <% if (status != '') { %>
+            <div class="alert alert-danger" role="alert">
+                <%= status; %> 
+              </div>
+        <% } %>
+          <button type="submit" class="btn btn-primary">Xác nhận tạo tài khoản</button>
+
+    </form>
+</div>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+    </script>   
+<%- include('footer'); -%>

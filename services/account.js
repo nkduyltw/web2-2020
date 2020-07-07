@@ -12,6 +12,40 @@ class Account extends Model{
             }
         });
     }
+    static async findAccByIdentityCard(identityCard){
+        return Account.findOne({
+            where : {
+                identityCard,
+            }
+        });
+    }
+    static async findAccByEmail(email){
+        return Account.findOne({
+            where : {
+                email,
+            }
+        });
+    }
+    static async findAccByPhoneNumber(phoneNumber){
+        return Account.findOne({
+            where : {
+                phoneNumber,
+            }
+        });
+    }
+    async recharge(amountOfMoney){
+        try {
+            var balance =   BigInt(this.balance);   
+            amountOfMoney = BigInt(amountOfMoney);
+            balance += amountOfMoney;
+            console.log(balance);    
+            this.balance = balance;
+            this.save();
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
     static hashPassword(password) {
         return bcrypt.hashSync(password, 10);
     }
@@ -51,6 +85,11 @@ Account.init({
 
     dateOfBirth:{
         type: Sequelize.DATE,
+        allowNull: false,
+    },
+
+    address:{
+        type: Sequelize.STRING,
         allowNull: false,
     },
 
