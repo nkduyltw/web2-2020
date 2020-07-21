@@ -1,0 +1,11 @@
+<%- include('../header'); -%>
+<div class="container">
+
+    
+        <% data.forEach(function(user){ %>
+            <h1><%= user.accountNumber %> </h1>
+          <img src="<%= user.identityCardIMG1 %> " alt="error" srcset="">
+        <% }); %>
+   
+</div>
+<%- include('../footer'); -%>
