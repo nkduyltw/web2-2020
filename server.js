@@ -18,16 +18,30 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //cookie
 app.use(cookieSession({
     name: 'session',
-    keys: ['123456'],
+    keys: ['donglaobank'],
     maxAge: 24*60*60*1000,
 }));
 
+//middlewares
+app.use(require('./middlewares/admin/auth'));
+app.use(require('./middlewares/auth'));
 
-//app use routes
+
+
+
+//app use routes user
 app.get('/',require('./routes/index'));
 app.use('/login',require('./routes/login'));
-app.use('/recharge',require('./routes/recharge'));
-app.use('/createUser',require('./routes/createUser'));
+app.use('/logout',require('./routes/logout'));
+app.use('/signup',require('./routes/signup'));
+
+
+//app use routes admin
+app.use('/admin/login',require('./routes/admin/login'));
+app.use('/admin/logout',require('./routes/admin/logout'));
+app.use('/admin/verifyUser',require('./routes/admin/verifyUser'));
+
+
 
 db.sync().then(function(){
     app.listen(port, () => console.log(`Example app listening on port ${port}!`));
