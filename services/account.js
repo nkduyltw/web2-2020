@@ -65,6 +65,15 @@ Account.init({
         allowNull: false,
         unique: true,
     },
+    identityCardIMG1:{
+        type: Sequelize.CHAR,
+        allowNull: false,
+    },
+
+    identityCardIMG2:{
+        type: Sequelize.CHAR,
+        allowNull: false,
+    },
 
     phoneNumber:{
         type: Sequelize.CHAR,
@@ -98,10 +107,21 @@ Account.init({
         allowNull: false,
     },
 
-    balance:{
-        type : Sequelize.BIGINT,
+    blanceSpendAccountVND:{
+        type : Sequelize.INTEGER,
         allowNull : false,
-        defaultValue : 50000,
+    },
+    blanceSpendAccountDollars:{
+        type : Sequelize.INTEGER,
+        allowNull : false,
+    },
+    status:{
+        type: Sequelize.BOOLEAN,
+        allowNull:false
+    },
+    token :{
+        type: Sequelize.STRING,
+        allowNull: true,
     }
 },{
     sequelize : db,

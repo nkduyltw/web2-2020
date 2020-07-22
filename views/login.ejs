@@ -37,18 +37,20 @@
                     <form method="POST">
                         <div class="form-group">
                           <label for="stk">Số tài khoản: </label>
-                          <input type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Nhập số tài khoản" name="accountNumber">
+                          <input type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Nhập số tài khoản" name="username">
                         </div>
                         <div class="form-group">
                           <label for="exampleInputPassword1">Mật khẩu: </label>
                           <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nhập mật khẩu" name="password">
                         </div>
                         <div class="form-group">
-                            <% if (!status) { %>
+
+                              <% errors.forEach(function(error){ %>
                                 <div class="alert alert-danger" role="alert">
-                                    Sai thông tin! Kiểm tra lại.
-                                  </div>
-                            <% } %>
+                                  <%= error %> 
+                                </div>
+                              <% }); %>
+                         
                         </div>
                         <button type="submit" class="btn btn-primary" style="background-color: #22b5ab;">Đăng nhập</button>
                       </form>

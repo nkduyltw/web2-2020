@@ -1,36 +1,12 @@
 const {Router}= require('express');
-const Account=require('../services/account');
+const controller = require('../controllers/login');
 const asyncHandler = require('express-async-handler');
 const router = Router();
 
-var status=true;
 
-router.get('/', function getLogin(req,res){
-    res.render('login',{status : status});
-});
 
-router.post('/', asyncHandler(async function (req,res){
-    const accountNumber = req.body.accountNumber;
-    const password = req.body.password;
-    const passwordHash = Account.hashPassword(password);
-    const Acc = await Account.findAcc(accountNumber);
+router.get('/',asyncHandler( controller.get));
 
-    
+router.post('/', asyncHandler(controller.post));
 
-    if(!Acc){
-        status=false;
-        res.render('login',{status : status});
-        status=true;
-    }
-    else{
-        if(Account.verifyPassword(password,passwordHash)){
-            res.redirect('/');
-        }
-        else{
-            status=false;
-            res.render('login',{status : status});
-            status=true;
-        }
-    }
-}));
 module.exports = router;

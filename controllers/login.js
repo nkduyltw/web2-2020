@@ -18,6 +18,7 @@ module.exports.getByEmail = async function(req, res) {
 
 module.exports.post = async function(req, res) {
     const values = req.body;
+    console.log(values);
     const accountNumber = req.body.username;
     const password = req.body.password;
     const passwordHash = Account.hashPassword(password);
