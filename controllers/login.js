@@ -6,6 +6,15 @@ module.exports.get = function(req, res) {
     const values = req.body;
     res.render('login', { errors, values });
 };
+module.exports.getByEmail = async function(req, res) {
+    const { accountNumber, token } = req.params;
+    const user = await Account.findAcc(accountNumber);
+    if(user && user.token == token){
+        user.token = null;
+        user.save();
+        
+    }
+};
 
 module.exports.post = async function(req, res) {
     const values = req.body;
