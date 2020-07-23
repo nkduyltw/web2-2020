@@ -1,11 +1,11 @@
-const Account=require('../services/account');
+const Account=require('../../services/account');
 const cryptoRandomString = require('crypto-random-string');
-const Email = require('../services/email');
-const email = require('../services/email');
+const Email = require('../../services/email');
+
 module.exports.get =  (req,res) => {
     values = req.body;
     errors = [];
-    res.render('signup', {errors, values});
+    res.render('user/signup', {errors, values});
 }
 
 module.exports.post = async (req,res) => {
@@ -45,7 +45,7 @@ module.exports.post = async (req,res) => {
         errors.push('Số điện thoại đã được đăng kí!');
     }
     if(errors.length != 0){
-        res.render('signup', {errors, values});
+        res.render('user/signup', {errors, values});
     }
     else{
         const password = Account.hashPassword(identityCard);
@@ -59,7 +59,7 @@ module.exports.post = async (req,res) => {
             }
         }
         identityCardIMG1 = req.files['identityCardIMG1'][0].path.split('\\').slice(1).join('\\');
-        identityCardIMG1 = req.files['identityCardIMG2'][0].path.split('\\').slice(1).join('\\');
+        identityCardIMG2 = req.files['identityCardIMG2'][0].path.split('\\').slice(1).join('\\');
         
 
         const result = Account.create({
@@ -78,9 +78,8 @@ module.exports.post = async (req,res) => {
             status : false ,
             token
         });
-        
-        await Email.send(email,'Mã kích hoạt tài khoản',`${process.env.BASE_URL}/login/${result.accountNumber}/${result.token}`);
-        res.redirect('/');
-        
+        const content = 'http://localhost:3000/login/' + accountNumber + '/' + token;
+        await Email.send(email,'Mã kích hoạt tài khoản',content);
+        res.redirect('/');   
     }
 }

@@ -1,4 +1,4 @@
-<%- include('header'); -%>
+<%- include('../header'); -%>
     <div class="container">
         <h1>Tạo tài khoản</h1>
         <form class="needs-validation" enctype= 'multipart/form-data' method="POST" >
@@ -60,6 +60,17 @@
             </div>
 
             <div class="form-group">
+              <label for="validationCustom01">Mật khẩu:</label>
+              <input type="password" class="form-control" id="validationCustom07" placeholder="Nhập mật khẩu..."  name="password"  required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please provide a valid city.
+              </div>
+            </div>
+
+            <div class="form-group">
               <label for="validationCustom01">Địa chỉ thường trú:</label>
               <input type="text" class="form-control" id="validationCustom07" placeholder="Nhập địa chỉ thường trú..."  name="address"  required>
               <div class="valid-feedback">
@@ -70,16 +81,7 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="validationCustom01">Mật khẩu:</label>
-              <input type="password" class="form-control" id="validationCustom07" placeholder="Nhập mật khẩu..."  name="password"  required>
-              <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                Please provide a valid city.
-              </div>
-            </div>
+            
 
             <div class="custom-file">
               <input type="file" class="custom-file-input" id="inputGroupFile01" name="identityCardIMG1">
@@ -95,7 +97,7 @@
 
             <!-- <input type="file" name="fileToUpload" id="fileToUpload"> -->
             
-          <button class="btn btn-primary" type="submit">Submit form</button>
+          <button class="btn btn-primary" type="submit" style="margin-top: 10px;">Xác nhận dăng kí</button>
         </form>
         
     </div>
@@ -119,4 +121,4 @@
       }, false);
     })();
     </script>   
-<%- include('footer'); -%>
+<%- include('../footer'); -%>

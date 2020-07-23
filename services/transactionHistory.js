@@ -5,7 +5,7 @@ const cryptoRandomString = require('crypto-random-string');
 
 const Model=Sequelize.Model;
 class transactionHistory extends Model{
-    static async add(accountNumber,transactionBalance){
+    static async add(accountNumber,accountNumberReceive,transactionBalance,currency,content){
         var tradingCode;
         var temp;
         while(true){
@@ -15,7 +15,7 @@ class transactionHistory extends Model{
                 break;
             }
         }
-        return transactionHistory.create({tradingCode,accountNumber,transactionBalance});
+        return transactionHistory.create({tradingCode,accountNumber,accountNumberReceive,transactionBalance,currency,content});
     }
     static async findByTradingCode(tradingCode){
         return transactionHistory.findOne({
@@ -36,9 +36,24 @@ transactionHistory.init({
         allowNull: false,
     },
 
+    accountNumberReceive:{
+        type: Sequelize.CHAR,
+        allowNull: false,
+    },
+
     transactionBalance:{
         type : Sequelize.BIGINT,
         allowNull : false,
+    },
+
+    currency:{
+        type : Sequelize.INTEGER,
+        allowNull : false,
+    },
+
+    content:{
+        type : Sequelize.BIGINT,
+        allowNull : true,
     }
 },{
     sequelize : db,

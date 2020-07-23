@@ -3,8 +3,14 @@
 
     
         <% data.forEach(function(user){ %>
-            <h1><%= user.accountNumber %> </h1>
-          <img src="<%= user.identityCardIMG1 %> " alt="error" srcset="">
+          <div style="border: 1px;">
+            <p><%= user.identityCard %> </p>
+            <p><%= user.name %></p>
+           <img src="<%= user.identityCardIMG1 %> " alt="error" srcset="">
+           <img src="<%= user.identityCardIMG1 %> " alt="error" srcset="">
+           <a href="/admin/verifyUser/<%= user.id %> "> Xác nhận </a>
+          </div>
+            
         <% }); %>
    
 </div>

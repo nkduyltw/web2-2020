@@ -12,6 +12,21 @@ class Account extends Model{
             }
         });
     }
+    static async findById(id){
+        return Account.findOne({
+            where : {
+                id
+            }
+        });
+    }
+    static async findAllNotTrue(){
+        return Account.findAll({
+            where : {
+                token: null,
+                status: false,
+            }
+        });
+    }
     static async findAccByIdentityCard(identityCard){
         return Account.findOne({
             where : {

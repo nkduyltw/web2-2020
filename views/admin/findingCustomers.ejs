@@ -1,0 +1,15 @@
+<%- include('../header'); -%>
+<div class="container">
+
+    
+        <% data.forEach(function(user){ %>
+          <div style="border: 1px;">
+            <p><%= user.accountNumber %> </p>
+            <p><%= user.name %></p>
+            <a href="/admin/profileUser/<%=user.accountNumber%> ">Xem chi tiết</a>
+          </div>
+            
+        <% }); %>
+   
+</div>
+<%- include('../footer'); -%>

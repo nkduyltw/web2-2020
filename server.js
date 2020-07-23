@@ -24,22 +24,25 @@ app.use(cookieSession({
 
 //middlewares
 app.use(require('./middlewares/admin/auth'));
-app.use(require('./middlewares/auth'));
+app.use(require('./middlewares/user/auth'));
 
 
 
 
 //app use routes user
 app.get('/',require('./routes/index'));
-app.use('/login',require('./routes/login'));
-app.use('/logout',require('./routes/logout'));
-app.use('/signup',require('./routes/signup'));
-
+app.use('/login',require('./routes/user/login'));
+app.use('/logout',require('./routes/user/logout'));
+app.use('/signup',require('./routes/user/signup'));
+app.use('/transfer',require('./routes/user/transfer'));
 
 //app use routes admin
 app.use('/admin/login',require('./routes/admin/login'));
 app.use('/admin/logout',require('./routes/admin/logout'));
 app.use('/admin/verifyUser',require('./routes/admin/verifyUser'));
+app.use('/admin/findingCustomers',require('./routes/admin/findingCustomers'));
+app.use('/admin/profileUser',require('./routes/admin/profileUser'));
+
 
 
 

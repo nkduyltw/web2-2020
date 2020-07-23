@@ -2,7 +2,7 @@ const {Router}= require('express');
 var multer  = require('multer')
 
 const asyncHandler = require('express-async-handler');
-const controller = require('../controllers/signup');
+const controller = require('../../controllers/user/signup');
 
 
 var storage = multer.diskStorage({
@@ -16,8 +16,8 @@ var cpUpload = upload.fields([{ name: 'identityCardIMG1', maxCount: 1 }, { name:
 
 const router = Router();
 
-router.get('/',controller.get);
+router.get('/',asyncHandler(controller.get));
 
-router.post('/', cpUpload, controller.post);
+router.post('/', cpUpload, asyncHandler(controller.post));
 
 module.exports = router;

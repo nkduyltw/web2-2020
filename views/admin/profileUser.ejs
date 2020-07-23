@@ -1,0 +1,22 @@
+<%- include('../header'); -%>
+<div class="container">
+
+  <% if (user) { %>
+    <p><%= user.accountNumber %> </p>
+    <p><%= user.name %> </p>
+    <p><%= user.identityCard %> </p>
+    <p><%= user.address %> </p>
+    <p><%= user.phoneNumber %> </p>
+    <p><%= user.email %> </p>
+    <p><%= user.blanceSpendAccountVND %> </p>
+    <p><%= user.blanceSpendAccountDollars %> </p>
+    <% if (user.status ) { %>
+      <p>Đang hoạt động </p>
+      <% } %>
+      <% if (!user.status ) { %>
+        <p>Chưa xác minh hoặc đã bị khóa </p>
+        <% } %>
+  <% } %>
+   
+</div>
+<%- include('../footer'); -%>
