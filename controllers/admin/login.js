@@ -13,7 +13,7 @@ module.exports.post = async (req, res) =>{
         if(Admin.verifyPassword(password, admin.password)){
             delete req.session.name;
             req.session.name = admin.name;
-            res.redirect('/');
+            res.redirect('/admin/home');
         }
     }
 }

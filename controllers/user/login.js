@@ -11,9 +11,10 @@ module.exports.getByEmail = async function(req, res) {
     if(user && user.token == token){
         user.token = null;
         user.save();
-       
+        delete req.session.accountNumber;
+        req.session.accountNumber = accountNumber;
     }
-    res.redirect('/');
+    res.redirect('/home');
 }
 
 module.exports.post = async function(req, res) {
@@ -52,7 +53,7 @@ module.exports.post = async function(req, res) {
                 if(Account.verifyPassword(password,Acc.password)){
                     delete req.session.accountNumber;
                     req.session.accountNumber = Acc.accountNumber;
-                    res.redirect('/');
+                    res.redirect('/home');
                 }
                 else{
                     const error = 'Sai mật khẩu';

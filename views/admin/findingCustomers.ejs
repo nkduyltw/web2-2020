@@ -1,6 +1,19 @@
 <%- include('../header'); -%>
 <div class="container">
 
+    <form method="POST">
+      
+      <div class="form-group">
+        <label >Số tài khoản:</label>
+        <input type="text" class="form-control"   placeholder="Nhập số tài khoản" name="accountNumber">
+      </div>
+      <% if(error != '') {%>
+        <div class="alert alert-danger" role="alert">
+          <%= error %> 
+        </div> 
+      <% } %> 
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
     
         <% data.forEach(function(user){ %>
           <div style="border: 1px;">

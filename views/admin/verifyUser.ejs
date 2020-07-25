@@ -1,13 +1,15 @@
 <%- include('../header'); -%>
 <div class="container">
 
-    
+    <%if (data.length == 0){ %>
+      <h2>Không có yêu cầu nào</h2>
+      <% } %>
         <% data.forEach(function(user){ %>
           <div style="border: 1px;">
             <p><%= user.identityCard %> </p>
             <p><%= user.name %></p>
-           <img src="<%= user.identityCardIMG1 %> " alt="error" srcset="">
-           <img src="<%= user.identityCardIMG1 %> " alt="error" srcset="">
+           <img src="./../../<%= user.identityCardIMG1 %> " alt="error" srcset="">
+           <img src="./../../<%= user.identityCardIMG1 %> " alt="error" srcset="">
            <a href="/admin/verifyUser/<%= user.id %> "> Xác nhận </a>
           </div>
             

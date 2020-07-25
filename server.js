@@ -33,15 +33,19 @@ app.use(require('./middlewares/user/auth'));
 app.get('/',require('./routes/index'));
 app.use('/login',require('./routes/user/login'));
 app.use('/logout',require('./routes/user/logout'));
+app.use('/home',require('./routes/user/home'));
 app.use('/signup',require('./routes/user/signup'));
 app.use('/transfer',require('./routes/user/transfer'));
+app.use('/history',require('./routes/user/history'));
 
 //app use routes admin
 app.use('/admin/login',require('./routes/admin/login'));
 app.use('/admin/logout',require('./routes/admin/logout'));
+app.use('/admin/home',require('./routes/admin/home'));
 app.use('/admin/verifyUser',require('./routes/admin/verifyUser'));
 app.use('/admin/findingCustomers',require('./routes/admin/findingCustomers'));
 app.use('/admin/profileUser',require('./routes/admin/profileUser'));
+app.use('/admin/recharge',require('./routes/admin/recharge'));
 
 
 

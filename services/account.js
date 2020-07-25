@@ -123,11 +123,11 @@ Account.init({
     },
 
     blanceSpendAccountVND:{
-        type : Sequelize.INTEGER,
+        type : Sequelize.BIGINT,
         allowNull : false,
     },
     blanceSpendAccountDollars:{
-        type : Sequelize.INTEGER,
+        type : Sequelize.BIGINT,
         allowNull : false,
     },
     status:{
