@@ -1,0 +1,66 @@
+body {
+    background-color: rgb(22, 22, 155);
+    overflow: hidden;
+}
+
+.demo-card-wide.mdl-card {
+    width: 800px;
+    margin: 40px auto;
+}
+
+.demo-card-wide>.mdl-card__title {
+    color: #333;
+    height: 420px;
+    background: url('https://lh3.googleusercontent.com/proxy/qaRPMIdfzJRaEa9nKqOLHhTzLoc6q0fPSUmZktflJ_2ZtSlws6_78HJE9ncNauRZhPRCx41EU8wp8Cxbm_4C0YMgmrTTTo3woTk5MG18hoq5DFeRwbDLKHtfsYiNtGNA7pdwItg') center / cover;
+}
+
+.demo-card-wide:nth-child(2)>.mdl-card__title {
+    background: url('https://www.sacombank.com.vn/SanPhamDichVuDaiDienDK/60/Banner-trang-chu_DN_796x352px.jpg') center / cover;
+}
+
+.demo-card-wide:nth-child(3)>.mdl-card__title {
+    background: url('https://doctordong.vn/blog/93/c8807bf2-159c-4b45-b3ff-b353364275e2.png') center / cover;
+}
+
+.demo-card-wide:nth-child(4)>.mdl-card__title {
+    background: url('https://www.sacombank.com.vn/SanPhamDichVuDaiDienDK/60/Banner-trang-chu_THI-TRUONG-NGOAI-HOI_796x352px.jpg') center / cover;
+}
+
+.demo-card-wide:nth-child(5)>.mdl-card__title {
+    background: url('https://www.sacombank.com.vn/SanPhamDichVuDaiDienDK/60/Banner-trang-chu_TUYEN-DUNG_796x352px.jpg') center / cover;
+}
+
+.mdl-card__title h2 {
+    background-color: #737e8b;
+    border-radius: 2px;
+    color: aliceblue;
+    padding: 4px;
+    font-size: 16px;
+}
+
+.circle3 {
+    position: fixed;
+    bottom: 16px;
+    right: 36px;
+    z-index: 2;
+}
+
+.circle2 {
+    position: fixed;
+    bottom: 80px;
+    right: 36px;
+    z-index: 2;
+}
+
+.circle1 {
+    position: fixed;
+    bottom: 144px;
+    right: 36px;
+    z-index: 2;
+}
+
+.btn-facebook:hover {
+    color: #fff;
+    background-color: #2d4373;
+    border-color: rgba(0, 0, 0, 0.2)
+}
