@@ -6,8 +6,8 @@ async function send(to, subject, content){
         port: 587,
         secure: false,
         auth: {
-          user: process.env.EMAIL_USERNAME || 'nkduy17ck1@gmail.com',
-          pass: process.env.EMAIL_PASSWORD || '827276Duy',
+          user: process.env.EMAIL_USERNAME ,
+          pass: process.env.EMAIL_PASSWORD ,
         }
       });
       

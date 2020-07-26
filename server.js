@@ -1,8 +1,9 @@
+require('dotenv').config();
 const express=require('express');
 const bodyParser = require('body-parser');
 const app= express();
 const cookieSession = require('cookie-session')
-const db=require('./services/db');
+const db = require('./services/db');
 
 const port = process.env.PORT || 3000;
 //app  use EJS
@@ -51,7 +52,9 @@ app.use('/admin/recharge',require('./routes/admin/recharge'));
 
 
 db.sync().then(function(){
-    app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+    app.listen(port, () => {
+        console.log(`Example app listening on port ${port}!`)
+    });
 }).catch(function(err){
     console.error(err);
 });

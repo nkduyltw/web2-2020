@@ -11,10 +11,8 @@ module.exports.getByEmail = async function(req, res) {
     if(user && user.token == token){
         user.token = null;
         user.save();
-        delete req.session.accountNumber;
-        req.session.accountNumber = accountNumber;
     }
-    res.redirect('/home');
+    res.redirect('/login');
 }
 
 module.exports.post = async function(req, res) {
