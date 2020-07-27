@@ -34,12 +34,22 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/">Trang chủ</a>
                     </li>
+                    <% if(!curentUser){ %> 
                     <li class="nav-item">
                         <a href="/login" class="nav-link">Đăng Nhập</a>
                     </li>
                     <li>
                         <a href="/signup" class="nav-link">Đăng Kí</a>
                     </li>
+                    <li>
+                        <a href="/admin/login" class="nav-link">Quản trị</a>
+                    </li>
+                    <% } %> 
+                    <% if(curentUser){ %> 
+                        <li class="nav-item">
+                            <a href="/logout" class="nav-link">Đăng xuất</a>
+                        </li>
+                    <% } %> 
                 </ul>
             </div>
         </div>

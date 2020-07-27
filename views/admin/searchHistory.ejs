@@ -1,0 +1,42 @@
+<%- include('header'); -%>
+<div class="container">
+
+    <form method="POST">
+        <div class="form-group">
+          <label for="exampleInputPassword1">Số tài khoản:</label>
+          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nhập số tài khoản cần tìm kiếm" name="accountNumber">
+        </div>
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+      </form>
+    <% if(history != null){ %> 
+        <% history.forEach(function(item){ %>
+            <p>Mã giao dịch : <%= item.tradingCode %>  </p>
+            <% if(item.currency==1){%> 
+            <p>Loại tiền: VNĐ</p>
+           <% } %> 
+           <% if(item.currency==2){ %> 
+            <p>Loại tiền: Dollars</p>
+           <% } %> 
+
+          <% if(item.type==1){ %> 
+            <p>Tài khoản được cộng: <span>+<%= item.transactionBalance %></span></p>
+            <p>Nội dung: <% if(item.content != null) { %>  <%=item.content%>  <% } %> </p>
+            <p>Thời gian: <%= moment(item.createdAt).format( 'LLLL') %></p>
+           <% } %> 
+           <% if(item.type==2){ %> 
+            <p>Tài khoản bị trừ: <span>-<%= item.transactionBalance %></span></p>
+            <p>Số tài khoản hưởng thụ: <%= item.accountNumberReceive %>  </p>
+            <p>Nội dung: <% if(item.content != null) { %>  <%=item.content%>  <% } %> </p>
+            <p>Thời gian: <%= moment(item.createdAt).format( 'LLLL') %></p>
+            
+           <% } %> 
+           <% if(item.type==3){ %> 
+            <p>Tài khoản được cộng: <span>+<%= item.transactionBalance %></span></p>
+           <p>Nội dung: <% if(item.content != null) { %>  <%=item.content%>  <% } %> </p>
+           <p>Thời gian: <%= moment(item.createdAt).format( 'LLLL') %></p>
+           <% } %> 
+           <p>-----------</p>
+        <% }); %>
+    <% } %> 
+</div>
+<%- include('../footer'); -%>

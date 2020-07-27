@@ -2,7 +2,8 @@ const Admin = require('../../services/admin');
 const { render } = require('ejs');
 
 module.exports.get = (req, res) =>{
-    res.render('admin/login');
+    const result = true;
+    res.render('admin/login', {result});
 }
 
 
@@ -14,6 +15,10 @@ module.exports.post = async (req, res) =>{
             delete req.session.name;
             req.session.name = admin.name;
             res.redirect('/admin/home');
+        }
+        else{
+            const result = false;
+            res.render('admin/login', {result});
         }
     }
 }

@@ -38,6 +38,7 @@ app.use('/home',require('./routes/user/home'));
 app.use('/signup',require('./routes/user/signup'));
 app.use('/transfer',require('./routes/user/transfer'));
 app.use('/history',require('./routes/user/history'));
+app.use('/profile',require('./routes/user/profile'));
 
 //app use routes admin
 app.use('/admin/login',require('./routes/admin/login'));
@@ -47,6 +48,8 @@ app.use('/admin/verifyUser',require('./routes/admin/verifyUser'));
 app.use('/admin/findingCustomers',require('./routes/admin/findingCustomers'));
 app.use('/admin/profileUser',require('./routes/admin/profileUser'));
 app.use('/admin/recharge',require('./routes/admin/recharge'));
+app.use('/admin/searchHistory',require('./routes/admin/searchHistory'));
+
 
 
 

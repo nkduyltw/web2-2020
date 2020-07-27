@@ -78,7 +78,7 @@ module.exports.post = async (req,res) => {
             status : false ,
             token
         });
-        const content = 'http://localhost:3000/login/' + accountNumber + '/' + token;
+        const content = process.env.HOST_WEB+'/login/' + accountNumber + '/' + token;
         await Email.send(email,'Mã kích hoạt tài khoản',content);
         res.redirect('/');   
     }

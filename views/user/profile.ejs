@@ -1,0 +1,12 @@
+<%- include('header'); -%>
+    <div class="container">
+        <h1>Thông tin tài khoản</h1>
+        <p>Số tài khoản: <%= curentUser.accountNumber %>  </p>
+        <p>Số dư tài khoản thanh toán (VNĐ): <%= curentUser.blanceSpendAccountVND %>  </p>
+        <p>Số dư tài khoản thanh toán ($): <%= curentUser.blanceSpendAccountDollars %>  </p>
+        <p>Họ tên: <%= curentUser.name %>  </p>
+        <p>CMND/CCCD/Hộ chiếu: <%= curentUser.identityCard %>  </p>
+        <p>Ngày sinh: <%= moment(curentUser.dateOfBirth).format( 'MMM-DD-YYYY') %></p>
+        <p>Địa chỉ: <%= curentUser.address %>  </p>
+    </div>
+<%- include('../footer'); -%></form>

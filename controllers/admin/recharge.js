@@ -34,16 +34,18 @@ module.exports.post = async (req, res) => {
             user.blanceSpendAccountVND += parseInt(amountOfMoney) ;
             user.save();
             //noi dung ad lam sao cho giong ngan hang that
-            const content = '';
-            History.add1(accountNumber, amountOfMoney, 1, content);
+            const content = 'Tài khoản được cộng '+ amountOfMoney + ' VNĐ từ ngân hàng';
+            console.log(content);
+            await History.add1(accountNumber, amountOfMoney, 1, content);
             res.redirect('/admin/recharge');
         }
         if( type == 2 ){
-            blanceSpendAccountDollars += parseInt(amountOfMoney);
+            user.blanceSpendAccountDollars += parseInt(amountOfMoney);
             user.save();
             //noi dung ad lam sao cho giong ngan hang that
-            const content = '';
-            History.add1(accountNumber, amountOfMoney, 2, content);
+            const content = 'Tài khoản được cộng '+ amountOfMoney + ' $ từ ngân hàng';
+            console.log(content);
+            await History.add1(accountNumber, amountOfMoney, 2, content);
             res.redirect('/admin/recharge');
         }
     }

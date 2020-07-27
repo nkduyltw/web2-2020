@@ -32,7 +32,7 @@ class transactionHistory extends Model{
                 break;
             }
         }
-        return transactionHistory.create({tradingCode,type,accountNumber,accountNumberReceive,transactionBalance,currency,content});
+        return transactionHistory.create({tradingCode,type,accountNumber,transactionBalance,currency,content});
     }
     //nhan tien tu 1 nguoi khac cung ngan hang
     static async add3(accountNumber,accountNumberReceive,transactionBalance,currency,content){
@@ -46,16 +46,20 @@ class transactionHistory extends Model{
                 break;
             }
         }
-        return transactionHistory.create({tradingCode,type,accountNumber,accountNumberReceive,transactionBalance,currency,content});
+        return transactionHistory.create({tradingCode,type,accountNumber,transactionBalance,currency,content});
     }
     // duyet lich su giao dich cua nguoi dung
     static async searchAllHistory(accountNumber){
         return transactionHistory.findAll({
             where :{
-                [Op.or]: [{accountNumber, accountNumberReceive: null}, {accountNumber}, {accountNumberReceive: accountNumber}]
-            }
+                [Op.or]: [{accountNumber, type: 1}, {accountNumber, type: 2}, {accountNumberReceive: accountNumber, type: 3}]
+            },
+            order: [
+                ['createdAt','DESC'],
+            ],
         });
     }
+
     //tim chi tiet giao dich bang code
     static async findByTradingCode(tradingCode){
         return transactionHistory.findOne({

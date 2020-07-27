@@ -2,7 +2,7 @@ const Account = require('../../services/account');
 asyncHandler = require('express-async-handler');
 module.exports = asyncHandler( async function auth(req, res, next) {
     const accountNumber = req.session.accountNumber;
-    res.locals.curentAdmin = null; 
+    res.locals.curentUser = null; 
     if( !accountNumber ){
         return next();
     }

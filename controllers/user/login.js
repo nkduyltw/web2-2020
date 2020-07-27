@@ -1,30 +1,55 @@
 const Account=require('../../services/account');
-var errors = [] ;
+
 
 
 module.exports.get = function(req, res) {
-    res.render('user/login', { errors });
+    const errors = [] ;
+    const email = false;
+    res.render('user/login', { errors, email });
 };
 module.exports.getByEmail = async function(req, res) {
+    var errors = [] ;
+    var email = false;
     const { accountNumber, token } = req.params;
     const user = await Account.findAcc(accountNumber);
-    if(user && user.token == token){
-        user.token = null;
-        user.save();
-    }
-    res.redirect('/login');
-}
-
-module.exports.post = async function(req, res) {
-    const accountNumber = req.body.username;
-    const password = req.body.password;
-    const Acc = await Account.findAcc(accountNumber);
-    
-    if(Acc == null){
-        const error = 'Không tìm thấy số tài khoản';
+    if(!user){
+        const error = 'Không tìm thấy tài khoản';
         errors.push(error);
         res.render('user/login',{
             errors,
+            email
+        });
+    }
+    if(user && user.token != token)
+    {
+        const error = 'Đã được kích hoạt!';
+        errors.push(error);
+        res.render('user/login',{
+            errors,
+            email
+        });
+    }
+    if(user && user.token == token){
+        user.token = null;
+        user.save();
+        email = true;
+    }
+    res.render('user/login', { errors, email });
+}
+
+module.exports.post = async function(req, res) {
+    var errors = [] ;
+    const email = false;
+    const phoneNumber = req.body.username;
+    const password = req.body.password;
+    const Acc = await Account.findAccByPhoneNumber(phoneNumber);
+    
+    if(Acc == null){
+        const error = 'Không tìm thấy tài khoản';
+        errors.push(error);
+        res.render('user/login',{
+            errors,
+            email
         });
         errors = [];
     }
@@ -34,6 +59,7 @@ module.exports.post = async function(req, res) {
             errors.push(error);
             res.render('user/login',{
                 errors,
+                email
             });
             errors = [];
         }
@@ -43,6 +69,7 @@ module.exports.post = async function(req, res) {
             errors.push(error);
             res.render('user/login',{
                 errors,
+                email
             });
             errors = [];
             }
@@ -58,6 +85,7 @@ module.exports.post = async function(req, res) {
                     errors.push(error);
                     res.render('user/login',{
                         errors,
+                        email
                     });
                     errors = [];
                 }
