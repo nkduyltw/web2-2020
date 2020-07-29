@@ -1,7 +1,7 @@
 require('dotenv').config();
-const express=require('express');
+const express = require('express');
 const bodyParser = require('body-parser');
-const app= express();
+const app = express();
 const cookieSession = require('cookie-session')
 const db = require('./services/db');
 
@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieSession({
     name: 'session',
     keys: ['donglaobank'],
-    maxAge: 24*60*60*1000,
+    maxAge: 24 * 60 * 60 * 1000,
 }));
 
 //middlewares
@@ -31,33 +31,39 @@ app.use(require('./middlewares/user/auth'));
 
 
 //app use routes user
-app.get('/',require('./routes/index'));
-app.use('/login',require('./routes/user/login'));
-app.use('/logout',require('./routes/user/logout'));
-app.use('/home',require('./routes/user/home'));
-app.use('/signup',require('./routes/user/signup'));
-app.use('/transfer',require('./routes/user/transfer'));
-app.use('/history',require('./routes/user/history'));
-app.use('/profile',require('./routes/user/profile'));
+app.get('/', require('./routes/index'));
+app.get('/editprofile', function(req, res) {
+    res.render('user/editprofile');
+});
+app.get('/changepassword', function(req, res) {
+    res.render('user/changepassword');
+});
+app.use('/login', require('./routes/user/login'));
+app.use('/logout', require('./routes/user/logout'));
+app.use('/home', require('./routes/user/home'));
+app.use('/signup', require('./routes/user/signup'));
+app.use('/transfer', require('./routes/user/transfer'));
+app.use('/history', require('./routes/user/history'));
+app.use('/profile', require('./routes/user/profile'));
 
 //app use routes admin
-app.use('/admin/login',require('./routes/admin/login'));
-app.use('/admin/logout',require('./routes/admin/logout'));
-app.use('/admin/home',require('./routes/admin/home'));
-app.use('/admin/verifyUser',require('./routes/admin/verifyUser'));
-app.use('/admin/findingCustomers',require('./routes/admin/findingCustomers'));
-app.use('/admin/profileUser',require('./routes/admin/profileUser'));
-app.use('/admin/recharge',require('./routes/admin/recharge'));
-app.use('/admin/searchHistory',require('./routes/admin/searchHistory'));
+app.use('/admin/login', require('./routes/admin/login'));
+app.use('/admin/logout', require('./routes/admin/logout'));
+app.use('/admin/home', require('./routes/admin/home'));
+app.use('/admin/verifyUser', require('./routes/admin/verifyUser'));
+app.use('/admin/findingCustomers', require('./routes/admin/findingCustomers'));
+app.use('/admin/profileUser', require('./routes/admin/profileUser'));
+app.use('/admin/recharge', require('./routes/admin/recharge'));
+app.use('/admin/searchHistory', require('./routes/admin/searchHistory'));
 
 
 
 
 
-db.sync().then(function(){
+db.sync().then(function() {
     app.listen(port, () => {
         console.log(`Example app listening on port ${port}!`)
     });
-}).catch(function(err){
+}).catch(function(err) {
     console.error(err);
 });

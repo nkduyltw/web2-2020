@@ -67,7 +67,9 @@ module.exports.post = async function(req, res) {
                 });
                 errors = [];
             } else {
-                // console.log(Account.verifyPassword(password,Acc.password));
+                console.log('pass one: ', password);
+                console.log('pass two', Acc.password);
+                console.log(Account.verifyPassword(password, Acc.password));
                 if (Account.verifyPassword(password, Acc.password)) {
                     delete req.session.accountNumber;
                     req.session.accountNumber = Acc.accountNumber;

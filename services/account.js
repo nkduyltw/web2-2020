@@ -1,59 +1,59 @@
 const Sequelize = require('sequelize');
-const db=require('./db');
+const db = require('./db');
 const bcrypt = require('bcrypt');
 const { where } = require('sequelize');
 
-const Model=Sequelize.Model;
-class Account extends Model{
-    static async findAcc(accountNumber){
+const Model = Sequelize.Model;
+class Account extends Model {
+    static async findAcc(accountNumber) {
         return Account.findOne({
-            where : {
+            where: {
                 accountNumber,
             }
         });
     }
-    static async findById(id){
+    static async findById(id) {
         return Account.findOne({
-            where : {
+            where: {
                 id
             }
         });
     }
-    static async findAllNotTrue(){
+    static async findAllNotTrue() {
         return Account.findAll({
-            where : {
+            where: {
                 token: null,
                 status: false,
             }
         });
     }
-    static async findAccByIdentityCard(identityCard){
+    static async findAccByIdentityCard(identityCard) {
         return Account.findOne({
-            where : {
+            where: {
                 identityCard,
             }
         });
     }
-    static async findAccByEmail(email){
+    static async findAccByEmail(email) {
         return Account.findOne({
-            where : {
+            where: {
                 email,
             }
         });
     }
-    static async findAccByPhoneNumber(phoneNumber){
+    static async findAccByPhoneNumber(phoneNumber) {
         return Account.findOne({
-            where : {
+            where: {
                 phoneNumber,
             }
         });
     }
-    async recharge(amountOfMoney){
+    async recharge(amountOfMoney) {
         try {
-            var balance =   BigInt(this.balance);   
+            var balance = BigInt(this.balance);
             amountOfMoney = BigInt(amountOfMoney);
             balance += amountOfMoney;
-            console.log(balance);    
+            console.log(balance);
             this.balance = balance;
             this.save();
             return true;
@@ -64,82 +64,84 @@ class Account extends Model{
     static hashPassword(password) {
         return bcrypt.hashSync(password, 10);
     }
-    static verifyPassword(password,passwordHash){
-        return bcrypt.compareSync(password,passwordHash);
+    static verifyPassword(password, passwordHash) {
+        return bcrypt.compareSync(password, passwordHash, function(err, valid) {
+            res.json({ error: !!(err || !valid) });
+        });
     }
 }
 Account.init({
-    accountNumber:{
-        type: Sequelize.CHAR,
-        allowNull: false,
-        unique: true,
-    },
-    
-    identityCard:{
-        type: Sequelize.CHAR,
-        allowNull: false,
-        unique: true,
-    },
-    identityCardIMG1:{
-        type: Sequelize.CHAR,
-        allowNull: false,
-    },
-
-    identityCardIMG2:{
-        type: Sequelize.CHAR,
-        allowNull: false,
-    },
-
-    phoneNumber:{
+    accountNumber: {
         type: Sequelize.CHAR,
         allowNull: false,
         unique: true,
     },
 
-    email:{
+    identityCard: {
+        type: Sequelize.CHAR,
+        allowNull: false,
+        unique: true,
+    },
+    identityCardIMG1: {
+        type: Sequelize.CHAR,
+        allowNull: false,
+    },
+
+    identityCardIMG2: {
+        type: Sequelize.CHAR,
+        allowNull: false,
+    },
+
+    phoneNumber: {
+        type: Sequelize.CHAR,
+        allowNull: false,
+        unique: true,
+    },
+
+    email: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
     },
 
-    name:{
+    name: {
         type: Sequelize.STRING,
         allowNull: false,
     },
 
-    dateOfBirth:{
+    dateOfBirth: {
         type: Sequelize.DATE,
         allowNull: false,
     },
 
-    address:{
+    address: {
         type: Sequelize.STRING,
         allowNull: false,
     },
 
-    password:{
+    password: {
         type: Sequelize.STRING,
         allowNull: false,
     },
 
-    blanceSpendAccountVND:{
-        type : Sequelize.BIGINT,
-        allowNull : false,
+    blanceSpendAccountVND: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
     },
-    blanceSpendAccountDollars:{
-        type : Sequelize.BIGINT,
-        allowNull : false,
+    blanceSpendAccountDollars: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
     },
-    status:{
+    status: {
         type: Sequelize.BOOLEAN,
-        allowNull:false
+        allowNull: false
     },
-    token :{
+    token: {
         type: Sequelize.STRING,
         allowNull: true,
     }
-},{
-    sequelize : db,
+}, {
+    sequelize: db,
     modelName: 'account',
 });
 
