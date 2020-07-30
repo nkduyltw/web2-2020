@@ -127,7 +127,7 @@ Account.init({
         allowNull : false,
     },
     blanceSpendAccountDollars:{
-        type : Sequelize.BIGINT,
+        type : Sequelize.DOUBLE,
         allowNull : false,
     },
     status:{

@@ -48,7 +48,7 @@ module.exports.post = async (req,res) => {
         res.render('user/signup', {errors, values});
     }
     else{
-        const password = Account.hashPassword(identityCard);
+        const password = Account.hashPassword(password);
         var accountNumber;
         var temp;
         while(true){

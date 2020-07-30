@@ -33,7 +33,7 @@ TKTK.init({
         allowNull: false,
     },
     // 1 có kỳ hạn
-    // không kỳ hạn
+    // 2 không kỳ hạn
     type:{
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -51,7 +51,7 @@ TKTK.init({
     
     duration:{
         type: Sequelize.DATE,
-        allowNull: false,
+        allowNull: true,
     }
 });
 
