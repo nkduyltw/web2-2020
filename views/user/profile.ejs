@@ -15,167 +15,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.1/css/fileinput.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker.min.css">
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>\
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.3.1/js/fileinput.min.js"></script>
-    <link rel="stylesheet" href="/style/user/profile.css">
+    <%- include('navbar-link'); -%>
+        <link rel="stylesheet" href="/style/user/profile.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-global navbar-fixed-top" style="background-color: #22b5ab">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-                <div class="row" style="width:250px;">
-                    <div class="col-sm-2">
-                        <a class="navbar-brand" href="#">
-                            <img src="./img/DL.png" alt="" style="height: 30px;">
-                        </a>
-                    </div>
-                    <div class="col-sm-8">
-                        <h4 style="color: white; padding-top: 12px;">Đông Lào Bank</h4>
+    <%- include('navbar-menu'); -%>
+        <%- include('navbar-primary'); -%>
+            <div class="main-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <img class="pic img-circle" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User photo" />
+                            <div class="username">
+                                <%= curentUser.name %>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-user navbar-right">
-                    <li><a href="#" style="color: #000;" class="usericon"><span class="glyphicon glyphicon-user"></span> <%= curentUser.name %></a></li>
-                    <li><a href="#about" style="color: #000;" class="logouticon"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
-        </div>
-    </nav>
-    <nav class="navbar-primary">
-        <a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
-        <ul class="navbar-primary-menu">
-            <li>
-                <a href="#"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Dashboard</span></a>
-                <a href="#"><span class="glyphicon glyphicon-envelope"></span><span class="nav-label">Profile</span></a>
-                <a href="#"><span class="glyphicon glyphicon-cog"></span><span class="nav-label">Settings</span></a>
-                <a href="#"><span class="glyphicon glyphicon-film"></span><span class="nav-label">Notification</span></a>
-                <a href="#"><span class="glyphicon glyphicon-calendar"></span><span class="nav-label">Monitor</span></a>
-            </li>
-        </ul>
-    </nav>
-    <div class="main-content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel">
-                    <img class="pic img-circle" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User photo" />
-                    <div class="username">
-                        <%= curentUser.name %>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="sidebar-nav">
-                    <div class="navbar navbar-default" role="navigation">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="sidebar-nav">
+                            <div class="navbar navbar-default" role="navigation">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
                  <span class="sr-only">Toggle navigation</span>
                  <span class="icon-bar"></span>
                  <span class="icon-bar"></span>
                  <span class="icon-bar"></span>
                </button>
-                            <span class="visible-xs navbar-brand">Profile menu</span>
+                                    <span class="visible-xs navbar-brand">Profile menu</span>
+                                </div>
+                                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                                    <ul class="nav navbar-nav">
+                                        <li><a href="/profile" class="active">Profile</a></li>
+                                        <li><a href="/editprofile">Edit profile</a></li>
+                                        <li><a href="/changepassword">Change password</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="/profile" class="active">Profile</a></li>
-                                <li><a href="/editprofile">Edit profile</a></li>
-                                <li><a href="/changepassword">Change password</a></li>
-                            </ul>
+                    </div>
+                    <div class="col-md-9">
+                        <span class="profile-item-header"> Profile:</span>
+                        <div class="edit-profile">
+                            <form id="editProfileForm" method="post">
+                                <div class="form-group row">
+                                    <label class="col-xs-3 form-control-label" for="stk">Số Tài Khoản</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" id="stk" placeholder="" value="<%= curentUser.accountNumber %>" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 form-control-label" for="sdtk">Số Dư Tài Khoản</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= curentUser.blanceSpendAccountVND %>" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 form-control-label" for="sdtk">CMND/CCCD/Hộ chiếu</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= curentUser.identityCard %>" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 form-control-label" for="sdtk">Ngày Sinh</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= moment(curentUser.dateOfBirth).format( 'MMM-DD-YYYY') %>" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 form-control-label" for="sdtk">Đỉa Chỉ</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= curentUser.address %>" disabled>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
-                <span class="profile-item-header"> Profile:</span>
-                <div class="edit-profile">
-                    <form id="editProfileForm" method="post">
-                        <div class="form-group row">
-                            <label class="col-xs-3 form-control-label" for="stk">Số Tài Khoản</label>
-                            <div class="col-xs-9">
-                                <input type="text" class="form-control" id="stk" placeholder="" value="<%= curentUser.accountNumber %>" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-xs-3 form-control-label" for="sdtk">Số Dư Tài Khoản</label>
-                            <div class="col-xs-9">
-                                <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= curentUser.blanceSpendAccountVND %>" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-xs-3 form-control-label" for="sdtk">CMND/CCCD/Hộ chiếu</label>
-                            <div class="col-xs-9">
-                                <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= curentUser.identityCard %>" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-xs-3 form-control-label" for="sdtk">Ngày Sinh</label>
-                            <div class="col-xs-9">
-                                <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= moment(curentUser.dateOfBirth).format( 'MMM-DD-YYYY') %>" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-xs-3 form-control-label" for="sdtk">Đỉa Chỉ</label>
-                            <div class="col-xs-9">
-                                <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= curentUser.address %>" disabled>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 <script>
     $('.btn-expand-collapse').click(function(e) {
         $('.navbar-primary').toggleClass('collapsed');
-    });
-</script>
-<script>
-    $.fn.datepicker.dates['ru'] = {
-        days: ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Птяница", "Суббота"],
-        daysShort: ["Вск", "Пнд", "Втн", "Срд", "Чтв", "Птн", "Суб"],
-        daysMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
-        months: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
-        monthsShort: ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"]
-    };
-
-    $('.date').datepicker({
-        format: "dd MM yyyy",
-        startDate: '01.01.1900',
-        endDate: '01.01.2017',
-        language: 'ru',
-        autoclose: true,
-        clearBtn: true,
-        orientation: 'bottom auto',
-        weekStart: 1
-    });
-
-    $('.date').datepicker().on('show', function(e) {
-        $('.datepicker').animate({
-            opacity: 1
-        }, "slow");
-    });
-
-    $('.date').datepicker().on('hide', function(e) {
-        $('.datepicker').animate({
-            opacity: 0
-        }, "slow");
     });
 </script>
 
