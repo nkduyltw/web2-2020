@@ -6,53 +6,67 @@ const Op = Sequelize.Op;
 
 const Model=Sequelize.Model;
 class transactionHistory extends Model{
-    // nhan tien tu admin
-    static async add1(accountNumber,transactionBalance,currency,content){
-        const type = 1;
+
+    static async createCode(){
         var tradingCode;
         var temp;
         while(true){
             tradingCode = cryptoRandomString({length: 10, type: 'numeric'});
             temp = await transactionHistory.findByTradingCode(tradingCode);
             if(!temp){
-                break;
+                return tradingCode;
             }
         }
-        return transactionHistory.create({tradingCode,type,accountNumber,transactionBalance,currency,content});
+    }
+    // nhan tien tu admin
+    static async add1(accountNumber,transactionBalance,currency,content){
+        const type = 1;
+        const tradingCode = await this.createCode();
+        
+        return transactionHistory.create({tradingCode: tradingCode,
+                                          type: type,
+                                          accountNumber: accountNumber,
+                                          transactionBalance: transactionBalance,
+                                          currency: currency,
+                                          content: content});
     }
     //chuyen tien den 1 nguoi khac cung ngan hang
     static async add2(accountNumber,accountNumberReceive,transactionBalance,currency,content){
         const type = 2;
-        var tradingCode;
-        var temp;
-        while(true){
-            tradingCode = cryptoRandomString({length: 10, type: 'numeric'});
-            temp = await transactionHistory.findByTradingCode(tradingCode);
-            if(!temp){
-                break;
-            }
-        }
-        return transactionHistory.create({tradingCode,type,accountNumber,transactionBalance,currency,content});
+        const tradingCode = await this.createCode();
+        return transactionHistory.create({
+                                            tradingCode: tradingCode,
+                                            type: type,
+                                            accountNumber: accountNumber,
+                                            accountNumberReceive: accountNumberReceive,
+                                            transactionBalance: transactionBalance,
+                                            currency: currency,
+                                            content: content
+                                        });
     }
-    //nhan tien tu 1 nguoi khac cung ngan hang
+    /*//nhan tien tu 1 nguoi khac cung ngan hang
     static async add3(accountNumber,accountNumberReceive,transactionBalance,currency,content){
         const type = 3;
-        var tradingCode;
-        var temp;
-        while(true){
-            tradingCode = cryptoRandomString({length: 10, type: 'numeric'});
-            temp = await transactionHistory.findByTradingCode(tradingCode);
-            if(!temp){
-                break;
-            }
-        }
-        return transactionHistory.create({tradingCode,type,accountNumber,transactionBalance,currency,content});
-    }
+        const tradingCode = await this.createCode();
+        return transactionHistory.create({
+            tradingCode: tradingCode,
+            type: type,
+            accountNumber: accountNumber,
+            accountNumberReceive: accountNumberReceive,
+            transactionBalance: transactionBalance,
+            currency: currency,
+            content: content
+        });
+    }*/
     // duyet lich su giao dich cua nguoi dung
     static async searchAllHistory(accountNumber){
         return transactionHistory.findAll({
             where :{
-                [Op.or]: [{accountNumber, type: 1}, {accountNumber, type: 2}, {accountNumberReceive: accountNumber, type: 3}]
+                [Op.or]: [
+                            {accountNumber, type: 1}, 
+                            {accountNumber, type: 2}, 
+                            {accountNumberReceive: accountNumber, type: 2}
+                        ]
             },
             order: [
                 ['createdAt','DESC'],

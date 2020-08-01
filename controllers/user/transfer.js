@@ -41,8 +41,7 @@ module.exports.post =async (req, res) =>{
             curentUser.save();
             user.save();
             await History.add2(curentUser.accountNumber, user.accountNumber, amountOfMoney, 1, content);
-            await History.add3(user.accountNumber, amountOfMoney, 1, content);
-            const status = true;
+            //await History.add3(user.accountNumber, amountOfMoney, 1, content);
             res.redirect('transfer');
         }
     }
@@ -68,7 +67,7 @@ module.exports.post =async (req, res) =>{
                 curentUser.save();
                 user.save();
                 await History.add2(curentUser.accountNumber, user.accountNumber, amountOfMoney, 2, content);
-                await History.add3(user.accountNumber, amountOfMoney, 2, content);
+                //await History.add3(user.accountNumber, amountOfMoney, 2, content);
                 const status = true;
                 res.redirect('transfer');
             }

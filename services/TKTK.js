@@ -5,12 +5,15 @@ const { where } = require('sequelize');
 
 const Model=Sequelize.Model;
 class TKTK extends Model{
-    static async addTKTK(accountNumber, currency, money, duration){
-        TKTKCode = cryptoRandomString({length: 10, type: 'numeric'});
+    static async createCode(){
+        TKTKCode = cryptoRandomString({length: 10, type: 'base64'});
             temp = await TKTK.findAll({where: {TKTKCode} });
             if(temp.length){
-                break;
+                return TKTKCode;
             }
+    }
+    static async addTKTK(accountNumber, currency, money, duration){
+        const TKTKCode = await createCode();
         return TKTK.create(TKTKCode,accountNumber,currency,money,duration);
     }
     static async search(accountNumber){
