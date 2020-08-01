@@ -1,13 +1,3 @@
-<!-- <div class="container">
-        <h1>Thông tin tài khoản</h1>
-        <p>Số tài khoản: <%= curentUser.accountNumber %>  </p>
-        <p>Số dư tài khoản thanh toán (VNĐ): <%= curentUser.blanceSpendAccountVND %>  </p>
-        <p>Số dư tài khoản thanh toán ($): <%= curentUser.blanceSpendAccountDollars %>  </p>
-        <p>Họ tên: <%= curentUser.name %>  </p>
-        <p>CMND/CCCD/Hộ chiếu: <%= curentUser.identityCard %>  </p>
-        <p>Ngày sinh: <%= moment(curentUser.dateOfBirth).format( 'MMM-DD-YYYY') %></p>
-        <p>Địa chỉ: <%= curentUser.address %>  </p>
-    </div> -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,8 +38,8 @@
                                 </div>
                                 <div class="navbar-collapse collapse sidebar-navbar-collapse">
                                     <ul class="nav navbar-nav">
-                                        <li><a href="/profile" class="active">Profile</a></li>
-                                        <li><a href="/editprofile">Edit profile</a></li>
+                                        <li><a href="/profile">Profile</a></li>
+                                        <li><a href="/editprofile" class="active">Edit profile</a></li>
                                         <li><a href="/changepassword">Change password</a></li>
                                     </ul>
                                 </div>
@@ -57,7 +47,7 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <span class="profile-item-header"> Profile:</span>
+                        <span class="profile-item-header"> Edit profile:</span>
                         <div class="edit-profile">
                             <form id="editProfileForm" method="post">
                                 <div class="form-group row">
@@ -79,16 +69,31 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-xs-3 form-control-label" for="sdtk">Ngày Sinh</label>
-                                    <div class="col-xs-9">
-                                        <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= moment(curentUser.dateOfBirth).format( 'MMM-DD-YYYY') %>" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
                                     <label class="col-xs-3 form-control-label" for="sdtk">Đỉa Chỉ</label>
                                     <div class="col-xs-9">
                                         <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= curentUser.address %>" disabled>
                                     </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 form-control-label" for="birth">Ngày Sinh</label>
+                                    <div class="col-xs-9 date">
+                                        <div class="input-group date" id="birth">
+                                            <input type="text" class="form-control" readonly value="<%=curentUser.dateOfBirth%>">
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 form-control-label" for="avatar">Choose avatar</label>
+                                    <div class="col-xs-9">
+                                        <input name="avatar" type="file" class="file file-loading" data-allowed-file-extensions='["png", "jpg"]'>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 button-container">
+                                    <input class="btn btn-default" type="submit" value="Save changes" />
+                                    <input class="btn btn-default" type="reset" value="Reset changes" />
                                 </div>
                             </form>
                         </div>
@@ -99,6 +104,38 @@
 <script>
     $('.btn-expand-collapse').click(function(e) {
         $('.navbar-primary').toggleClass('collapsed');
+    });
+</script>
+<script>
+    $.fn.datepicker.dates['ru'] = {
+        days: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ Nhật"],
+        daysShort: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ Nhật"],
+        daysMin: ["T2", "T3", "T4", "T5", "T6", "T7", "CN"],
+        months: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
+        monthsShort: ["1", "2", "2", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+    };
+
+    $('.date').datepicker({
+        format: "dd MM yyyy",
+        startDate: '01.01.1900',
+        endDate: '01.01.2017',
+        language: 'vn',
+        autoclose: true,
+        clearBtn: true,
+        orientation: 'bottom auto',
+        weekStart: 1
+    });
+
+    $('.date').datepicker().on('show', function(e) {
+        $('.datepicker').animate({
+            opacity: 1
+        }, "slow");
+    });
+
+    $('.date').datepicker().on('hide', function(e) {
+        $('.datepicker').animate({
+            opacity: 0
+        }, "slow");
     });
 </script>
 
