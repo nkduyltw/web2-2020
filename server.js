@@ -32,9 +32,7 @@ app.use(require('./middlewares/user/auth'));
 
 //app use routes user
 app.get('/', require('./routes/index'));
-app.get('/editprofile', function(req, res) {
-    res.render('user/editprofile');
-});
+
 app.get('/changepassword', function(req, res) {
     res.render('user/changepassword');
 });
@@ -46,6 +44,7 @@ app.use('/transfer', require('./routes/user/transfer'));
 app.use('/otp', require('./routes/user/otp'));
 app.use('/history', require('./routes/user/history'));
 app.use('/profile', require('./routes/user/profile'));
+app.use('/editprofile', require('./routes/user/editprofile'));
 
 //app use routes admin
 app.use('/admin/login', require('./routes/admin/login'));

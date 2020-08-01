@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/login.css">
+    <link rel="stylesheet" href="/style/login.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <img src="./img/DL.png" alt="" srcset="" class="logo">
+            <img src="/img/DL.png" alt="" srcset="" class="logo">
             <p class="content">ĐÔNG LÀO BANK</p>
         </div>
     </div>
@@ -46,16 +46,16 @@
                             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nhập mật khẩu" name="password">
                         </div>
                         <div class="form-group">
-                            <% if(email) { %> 
+                            <% if(email) { %>
                                 <div class="alert alert-success" role="alert">
                                     Kích hoạt thành công. Hãy đợi nhân viên xác nhận !
                                 </div>
-                            <% } %> 
-                            <% errors.forEach(function(error){ %>
-                                <div class="alert alert-danger" role="alert">
-                                    <%= error %>
-                                </div>
-                                <% }); %>
+                                <% } %>
+                                    <% errors.forEach(function(error){ %>
+                                        <div class="alert alert-danger" role="alert">
+                                            <%= error %>
+                                        </div>
+                                        <% }); %>
 
                         </div>
                         <button type="submit" class="btn btn-primary" style="background-color: #22b5ab;">Đăng nhập</button>

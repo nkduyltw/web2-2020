@@ -1,124 +1,133 @@
 <%- include('header'); -%>
     <div class="container">
-        <h1>ĐĂng KÍ TÀI KHOẢN NGÂN HÀNG ĐÔNG LÀO</h1>
-        <form class="needs-validation" enctype= 'multipart/form-data' method="POST" >
-          <div class="form-row"></div>
-
-            <div class="form-group">
-              <label for="validationCustom01">Họ và tên:</label>
-              <input type="text" class="form-control" id="validationCustom01" placeholder="Nhập đầy đủ họ tên..." name="name"  required>
-              <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                Please provide a valid city.
-              </div>
+        <h2 style="text-align: center;padding: 20px;">ĐĂNG KÍ TÀI KHOẢN NGÂN HÀNG ĐÔNG LÀO</h2>
+        <div class="row">
+            <div class="col-sm-1">
             </div>
+            <div class="col-sm-6">
+                <form class="needs-validation" enctype='multipart/form-data' method="POST">
+                    <div class="form-row"></div>
 
-            <div class="form-group">
-              <label for="validationCustom01">CMND/CCCD:</label>
-              <input type="text" class="form-control" id="validationCustom02" placeholder="Nhập số CMND/CCCD..." name="identityCard"  required>
-              <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                Please provide a valid city.
-              </div>
+                    <div class="form-group">
+                        <label for="validationCustom01">Họ và tên:</label>
+                        <input type="text" class="form-control" id="validationCustom01" placeholder="Nhập đầy đủ họ tên..." name="name" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please provide a valid city.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="validationCustom01">CMND/CCCD:</label>
+                        <input type="text" class="form-control" id="validationCustom02" placeholder="Nhập số CMND/CCCD..." name="identityCard" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please provide a valid city.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="validationCustom01">Số điện thoại:</label>
+                        <input type="text" class="form-control" id="validationCustom03" placeholder="Nhập số số điện thoại..." name="phoneNumber" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please provide a valid city.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="validationCustom01">Email:</label>
+                        <input type="email" class="form-control" id="validationCustom05" placeholder="Nhập email..." name="email" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please provide a valid city.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="validationCustom01">Ngày sinh:</label>
+                        <input type="date" class="form-control" id="validationCustom06" name="dateOfBirth" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please provide a valid city.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="validationCustom01">Mật khẩu:</label>
+                        <input type="password" class="form-control" id="validationCustom07" placeholder="Nhập mật khẩu..." name="password" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please provide a valid city.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="validationCustom01">Địa chỉ thường trú:</label>
+                        <input type="text" class="form-control" id="validationCustom07" placeholder="Nhập địa chỉ thường trú..." name="address" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please provide a valid city.
+                        </div>
+                    </div>
+
+
+
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="identityCardIMG1">
+                        <label class="custom-file-label" for="inputGroupFile01">Mặt trước CMND/CCCD</label>
+                    </div>
+
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile02" name="identityCardIMG2">
+                        <label class="custom-file-label" for="inputGroupFile02">Mặt sau CMND/CCCD</label>
+                    </div>
+
+
+
+                    <!-- <input type="file" name="fileToUpload" id="fileToUpload"> -->
+
+                    <button class="btn btn-primary" type="submit" style="margin-top: 10px;">Xác nhận dăng kí</button>
+                </form>
+
             </div>
-
-            <div class="form-group">
-              <label for="validationCustom01">Số điện thoại:</label>
-              <input type="text" class="form-control" id="validationCustom03" placeholder="Nhập số số điện thoại..." name="phoneNumber"  required>
-              <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                Please provide a valid city.
-              </div>
+            <div class="col-sm-5">
+                <img style="padding-top: 60px" src="https://www.flaticon.com/premium-icon/icons/svg/3156/3156160.svg" alt="">
             </div>
-
-            <div class="form-group">
-              <label for="validationCustom01">Email:</label>
-              <input type="email" class="form-control" id="validationCustom05" placeholder="Nhập email..." name="email"  required>
-              <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                Please provide a valid city.
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="validationCustom01">Ngày sinh:</label>
-              <input type="date" class="form-control" id="validationCustom06"  name="dateOfBirth"  required>
-              <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                Please provide a valid city.
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="validationCustom01">Mật khẩu:</label>
-              <input type="password" class="form-control" id="validationCustom07" placeholder="Nhập mật khẩu..."  name="password"  required>
-              <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                Please provide a valid city.
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="validationCustom01">Địa chỉ thường trú:</label>
-              <input type="text" class="form-control" id="validationCustom07" placeholder="Nhập địa chỉ thường trú..."  name="address"  required>
-              <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                Please provide a valid city.
-              </div>
-            </div>
-
-            
-
-            <div class="custom-file">
-              <input type="file" class="custom-file-input" id="inputGroupFile01" name="identityCardIMG1">
-              <label class="custom-file-label" for="inputGroupFile01">Mặt trước CMND/CCCD</label>
-            </div>
-
-            <div class="custom-file">
-              <input type="file" class="custom-file-input" id="inputGroupFile02"  name="identityCardIMG2">
-              <label class="custom-file-label" for="inputGroupFile02">Mặt sau CMND/CCCD</label>
-            </div>
-
-            
-
-            <!-- <input type="file" name="fileToUpload" id="fileToUpload"> -->
-            
-          <button class="btn btn-primary" type="submit" style="margin-top: 10px;">Xác nhận dăng kí</button>
-        </form>
-        
+        </div>
     </div>
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
-      'use strict';
-      window.addEventListener('load', function() {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function(form) {
-          form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-          }, false);
-        });
-      }, false);
-    })();
-    </script>   
-<%- include('../footer'); -%>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+    <%- include('../footer'); -%>

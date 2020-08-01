@@ -1,5 +1,4 @@
-<%- include('header'); -%>
-<div class="container">
+<!-- <div class="container">
     <div class="">
         
         <a href="/profile/"><h2>Thông tin tài khoản</h2></a>
@@ -17,5 +16,79 @@
         
         <a href="/logout/"><h2>Đăng xuất</h2></a>
     </div>
-</div>
-<%- include('../footer'); -%>
+</div> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('navbar-link'); -%>
+        <link rel="stylesheet" href="/style/user/profile.css">
+        <link rel="stylesheet" href="/style/1.css">
+        <link rel="stylesheet" href="/style/user/home.css">
+</head>
+
+<body>
+    <%- include('navbar-menu'); -%>
+        <%- include('navbar-primary'); -%>
+            <div class="main-content">
+                <div class="cards-list">
+
+                    <div class="card 1" id="one">
+                        <div class="card_image"> <img src="https://media.giphy.com/media/JpG2A9P3dPHXaTYrwu/giphy.gif" /> </div>
+                        <div class="card_title title-white">
+                            <p style="font-size: medium;color: red;">Chuyển Khoản Cùng Ngân Hàng</p>
+                        </div>
+                    </div>
+
+                    <div class="card 2" id="two">
+                        <div class="card_image">
+                            <img src="https://media.giphy.com/media/62CDX43Hr8WlO/giphy.gif" />
+                        </div>
+                        <div class="card_title title-white">
+                            <p style="font-size: medium;color: red;">Lịch Sử Giao Dịch</p>
+                        </div>
+                    </div>
+
+                    <div class="card 3" id="three">
+                        <div class="card_image">
+                            <img src="https://media.giphy.com/media/l4FGvzjS7yqXX7NHW/giphy.gif" />
+                        </div>
+                        <div class="card_title">
+                            <p style="font-size: medium; color: rgb(15, 2, 3);">Thông Tin Tài Khoản</p>
+                        </div>
+                    </div>
+
+                    <div class="card 4">
+                        <div class="card_image">
+                            <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
+                        </div>
+                        <div class="card_title title-black">
+                            <p style="font-size: medium;">Card Title</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+</body>
+<%- include('../footer.ejs'); -%>
+    <script>
+        $('.btn-expand-collapse').click(function(e) {
+            $('.navbar-primary').toggleClass('collapsed');
+        });
+    </script>
+    <script>
+        $("#one").click(function() {
+            window.location.href = "/transfer";
+        });
+        $("#two").click(function() {
+            window.location.href = "/history";
+        });
+        $("#three").click(function() {
+            window.location.href = "/profile";
+        });
+    </script>
+
+</html>

@@ -11,10 +11,11 @@ HTML CSS JSResult .navbar-global {
 }
 
 .navbar-primary {
+    max-height: 100% !important;
     background-color: #333;
     bottom: 0px;
     left: 0px;
-    position: absolute;
+    position: fixed;
     top: 51px;
     width: 200px;
     z-index: 8;
@@ -197,4 +198,3 @@ div.col-xs-4 {
         padding-bottom: 12px;
     }
 }
-

@@ -7,12 +7,13 @@
     <title>Document</title>
     <%- include('navbar-link'); -%>
         <link rel="stylesheet" href="/style/user/profile.css">
+        <link rel="stylesheet" href="/style/1.css">
 </head>
 
 <body>
     <%- include('navbar-menu'); -%>
         <%- include('navbar-primary'); -%>
-            <div class="main-content">
+            <div class="main-content" style="padding-bottom: 197px;">
                 <div class="row">
                     <div class="col-sm-1">
 
@@ -52,10 +53,11 @@
 
             </div>
 </body>
-<script>
-    $('.btn-expand-collapse').click(function(e) {
-        $('.navbar-primary').toggleClass('collapsed');
-    });
-</script>
+<%- include('../footer.ejs'); -%>
+    <script>
+        $('.btn-expand-collapse').click(function(e) {
+            $('.navbar-primary').toggleClass('collapsed');
+        });
+    </script>
 
 </html>
