@@ -18,7 +18,9 @@
     "nodemailer": "^6.4.10",
     "nodemon": "^2.0.4",
     "pg": "^8.2.1",
-    "sequelize": "^5.22.0"
+    "qrcode": "^1.4.4",
+    "sequelize": "^5.22.0",
+    "speakeasy": "^2.0.0"
   },
   "devDependencies": {},
   "scripts": {

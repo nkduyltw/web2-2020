@@ -43,6 +43,7 @@ app.use('/logout', require('./routes/user/logout'));
 app.use('/home', require('./routes/user/home'));
 app.use('/signup', require('./routes/user/signup'));
 app.use('/transfer', require('./routes/user/transfer'));
+app.use('/otp', require('./routes/user/otp'));
 app.use('/history', require('./routes/user/history'));
 app.use('/profile', require('./routes/user/profile'));
 
