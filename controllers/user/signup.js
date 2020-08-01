@@ -9,8 +9,6 @@ module.exports.get = (req, res) => {
 }
 
 module.exports.post = async(req, res) => {
-    console.log(req.files['identityCardIMG1'][0].path.split('\\').slice(1).join('\\'));
-
     var errors = [];
     var values = req.body;
 
@@ -48,14 +46,14 @@ module.exports.post = async(req, res) => {
         res.render('user/signup', {errors, values});
     }
     else{
-         password = Account.hashPassword(password);
+        password = Account.hashPassword(password);
         var accountNumber;
         var temp;
         while (true) {
             accountNumber = cryptoRandomString({ length: 13, type: 'numeric' });
             temp = await Account.findAcc(accountNumber);
             if (!temp) {
-                break;
+                break ;
             }
         }
         identityCardIMG1 = req.files['identityCardIMG1'][0].path.split('\\').slice(1).join('\\');

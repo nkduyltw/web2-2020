@@ -2,19 +2,21 @@ const Sequelize = require('sequelize');
 const db=require('./db');
 const bcrypt = require('bcrypt');
 const { where } = require('sequelize');
+const History =  require('./transactionHistory');
 
 const Model=Sequelize.Model;
 class TKTK extends Model{
     static async createCode(){
-        TKTKCode = cryptoRandomString({length: 10, type: 'base64'});
+        TKTKCode = cryptoRandomString({length: 5, type: 'base64'});
             temp = await TKTK.findAll({where: {TKTKCode} });
             if(temp.length){
                 return TKTKCode;
             }
     }
-    static async addTKTK(accountNumber, currency, money, duration){
+    static async addTKTK(accountNumber, currency, money, duration, note){
         const TKTKCode = await createCode();
-        return TKTK.create(TKTKCode,accountNumber,currency,money,duration);
+        await History.add3(accountNumber, money);
+        return TKTK.create(TKTKCode, accountNumber, currency, money, duration, note);
     }
     static async search(accountNumber){
         return TKTK.findAll({
@@ -55,7 +57,21 @@ TKTK.init({
     duration:{
         type: Sequelize.DATE,
         allowNull: true,
+    },
+
+    note:{
+        type: Sequelize.STRING
+    },
+
+    done:{
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
     }
-});
+},
+    {
+        sequelize : db,
+        modelName: 'TKTK',
+    }
+);
 
 module.exports = TKTK;

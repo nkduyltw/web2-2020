@@ -66,10 +66,8 @@ module.exports.post = async function(req, res) {
                     email
                 });
                 errors = [];
-            } else {
-                console.log('pass one: ', password);
-                console.log('pass two', Acc.password);
-                console.log(Account.verifyPassword(password, Acc.password));
+            } 
+            else {
                 if (Account.verifyPassword(password, Acc.password)) {
                     delete req.session.accountNumber;
                     req.session.accountNumber = Acc.accountNumber;

@@ -50,6 +50,7 @@ app.use('/profile', require('./routes/user/profile'));
 app.use('/admin/login', require('./routes/admin/login'));
 app.use('/admin/logout', require('./routes/admin/logout'));
 app.use('/admin/home', require('./routes/admin/home'));
+app.use('/admin', require('./routes/admin/home'));
 app.use('/admin/verifyUser', require('./routes/admin/verifyUser'));
 app.use('/admin/findingCustomers', require('./routes/admin/findingCustomers'));
 app.use('/admin/profileUser', require('./routes/admin/profileUser'));

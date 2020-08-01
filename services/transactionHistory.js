@@ -44,6 +44,19 @@ class transactionHistory extends Model{
                                             content: content
                                         });
     }
+    // lich su tao tai khoan tiet kiem
+    static async add3(accountNumber, transactionBalance, currency){
+        const type = 3;
+        const tradingCode = await this.createCode();
+        const  content = 'Tài khoản bị trừ -' + transactionBalance +' cho giao dịch mở tài khoản tiết kiệm';
+        return transactionHistory.create({  tradingCode: tradingCode,
+                                            type: type,
+                                            accountNumber: accountNumber,
+                                            transactionBalance: transactionBalance,
+                                            currency: currency,
+                                            content: content});
+    }
+
     /*//nhan tien tu 1 nguoi khac cung ngan hang
     static async add3(accountNumber,accountNumberReceive,transactionBalance,currency,content){
         const type = 3;
@@ -90,7 +103,7 @@ transactionHistory.init({
     },
     // type = 1 : nap tien tu admin
     // type = 2 : chuyen tien den cung ngan hang
-    // type = 3 : nhan tien tu nguoi khac cung ngan hang
+    // type = 3 : mo tai khoan tiet kiem
     type:{
         type: Sequelize.INTEGER,
         allowNull: false,
