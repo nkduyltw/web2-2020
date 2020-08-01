@@ -1,75 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('header'); -%>
+    <div class="container">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <%- include('navbar-link'); -%>
-        <link rel="stylesheet" href="/style/user/profile.css">
-        <link rel="stylesheet" href="/style/1.css">
-        <link rel="stylesheet" href="/style/user/home.css">
-</head>
+        <div class="">
 
-<body>
-    <%- include('navbar-menu'); -%>
-        <%- include('navbar-primary'); -%>
-            <div class="main-content">
-                <div class="cards-list">
+            <a href="/admin/verifyUser/">
+                <h2>Yêu cầu xác nhận</h2>
+            </a>
+        </div>
+        <div class="">
 
-                    <div class="card 1" id="one">
-                        <div class="card_image"> <img src="https://media.giphy.com/media/cciI7pobd6MDe/giphy.gif" /> </div>
-                        <div class="card_title title-white">
-                            <p style="font-size: medium;color: red;">Yêu cầu xác nhận</p>
-                        </div>
-                    </div>
+            <a href="/admin/findingCustomers/">
+                <h2>Tìm kiếm khách hàng</h2>
+            </a>
+        </div>
+        <div class="">
 
-                    <div class="card 2" id="two">
-                        <div class="card_image">
-                            <img src="https://media.giphy.com/media/1n673PlmCdXBwWoCP0/giphy.gif" />
-                        </div>
-                        <div class="card_title title-white">
-                            <p style="font-size: medium;color: red;">Tìm kiếm khách hàng</p>
-                        </div>
-                    </div>
+            <a href="/admin/recharge/">
+                <h2>Nạp tiền vào tài khoản khách hàng</h2>
+            </a>
+        </div>
+        <div class="">
 
-                    <div class="card 3" id="three">
-                        <div class="card_image">
-                            <img src="https://media.giphy.com/media/ADgfsbHcS62Jy/giphy.gif" />
-                        </div>
-                        <div class="card_title">
-                            <p style="font-size: medium; color: rgb(224, 216, 217);">Nạp tiền vào tài khoản khách hàng</p>
-                        </div>
-                    </div>
+            <a href="/admin/searchHistory/">
+                <h2>Tìm kiếm giao dịch</h2>
+            </a>
+        </div>
+        <div class="">
 
-                    <div class="card 4">
-                        <div class="card_image">
-                            <img src="https://media.giphy.com/media/l0MYHq0IFikDrVQOc/giphy.gif" />
-                        </div>
-                        <div class="card_title title-black">
-                            <p style="font-size: medium;">Tìm kiếm giao dịch</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-</body>
-<%- include('../footer.ejs'); -%>
-    <script>
-        $('.btn-expand-collapse').click(function(e) {
-            $('.navbar-primary').toggleClass('collapsed');
-        });
-    </script>
-    <script>
-        $("#one").click(function() {
-            window.location.href = "/transfer";
-        });
-        $("#two").click(function() {
-            window.location.href = "/history";
-        });
-        $("#three").click(function() {
-            window.location.href = "/profile";
-        });
-    </script>
-
-</html>
+            <a href="/admin/logout/">
+                <h2>Đăng xuất</h2>
+            </a>
+        </div>
+    </div>
+    <%- include('../footer'); -%>
