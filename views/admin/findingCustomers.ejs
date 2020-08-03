@@ -1,28 +1,76 @@
-<%- include('header'); -%>
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
 
-    <form method="POST">
-      
-      <div class="form-group">
-        <label >Số tài khoản:</label>
-        <input type="text" class="form-control"   placeholder="Nhập số tài khoản" name="accountNumber">
-      </div>
-      <% if(error != '') {%>
-        <div class="alert alert-danger" role="alert">
-          <%= error %> 
-        </div> 
-      <% } %> 
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    
-        <% data.forEach(function(user){ %>
-          <div style="border: 1px;">
-            <p><%= user.accountNumber %> </p>
-            <p><%= user.name %></p>
-            <a href="/admin/profileUser/<%=user.accountNumber%> ">Xem chi tiết</a>
-          </div>
-            
-        <% }); %>
-   
-</div>
-<%- include('../footer'); -%>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('navbar-link'); -%>
+        <link rel="stylesheet" href="/style/user/profile.css">
+        <link rel="stylesheet" href="/style/user/home.css">
+        <link rel="stylesheet" href="/style/findingCustomer.css">\
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <%- include('navbar-menu'); -%>
+        <%- include('navbar-primary'); -%>
+            <div class="main-content" style="height: 700px;">
+                <div class="wrap">
+                    <div class="form-group">
+                        <form method="POST">
+                            <div class="search">
+                                <input type="text" class="searchTerm" placeholder="Nhập Số Tài Khoản" name="accountNumber">
+                                <button type="submit" class="searchButton"><i class="fa fa-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <% if(error != '') {%>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                    <% } %>
+                        <table class="table" id="makeEditable">
+                            <thead>
+                                <tr>
+                                    <th>Tên Tài Khoản</th>
+                                    <th>Số Tài Khoản </th>
+                                    <th>Xem Tiết</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% data.forEach(function(user){ %>
+                                    <tr class="info">
+                                        <td style="font-size: medium;padding-top: 15px;">
+                                            <%= user.name %>
+                                        </td>
+                                        <td style="font-size: medium;padding-top: 15px;">
+                                            <%= user.accountNumber %>
+                                        </td>
+                                        <td style="font-size: medium;"><button class="btn btn-success" style="width: 100px;height: 40px;"><a style="text-decoration: none;color: rgb(206, 55, 55);" href="/admin/profileUser/<%=user.accountNumber%> "> Chi Tiết </a></button></td>
+                                    </tr>
+                                    <% }); %>
+                            </tbody>
+                        </table>
+            </div>
+</body>
+<%- include('../footer.ejs'); -%>
+    <script>
+        $('.btn-expand-collapse').click(function(e) {
+            $('.navbar-primary').toggleClass('collapsed');
+        });
+    </script>
+    <script>
+        $("#one").click(function() {
+            window.location.href = "/transfer";
+        });
+        $("#two").click(function() {
+            window.location.href = "/history";
+        });
+        $("#three").click(function() {
+            window.location.href = "/profile";
+        });
+    </script>
+
+</html>

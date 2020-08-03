@@ -1,42 +1,101 @@
-<%- include('header'); -%>
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
 
-    <form method="POST">
-        <div class="form-group">
-          <label for="exampleInputPassword1">Số tài khoản:</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nhập số tài khoản cần tìm kiếm" name="accountNumber">
-        </div>
-        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-      </form>
-    <% if(history != null){ %> 
-        <% history.forEach(function(item){ %>
-            <p>Mã giao dịch : <%= item.tradingCode %>  </p>
-            <% if(item.currency==1){%> 
-            <p>Loại tiền: VNĐ</p>
-           <% } %> 
-           <% if(item.currency==2){ %> 
-            <p>Loại tiền: Dollars</p>
-           <% } %> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('navbar-link'); -%>
+        <link rel="stylesheet" href="/style/user/profile.css">
+        <link rel="stylesheet" href="/style/user/home.css">
+        <link rel="stylesheet" href="/style/findingCustomer.css">\
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
 
-          <% if(item.type==1){ %> 
-            <p>Tài khoản được cộng: <span>+<%= item.transactionBalance %></span></p>
-            <p>Nội dung: <% if(item.content != null) { %>  <%=item.content%>  <% } %> </p>
-            <p>Thời gian: <%= moment(item.createdAt).format( 'LLLL') %></p>
-           <% } %> 
-           <% if(item.type==2){ %> 
-            <p>Tài khoản bị trừ: <span>-<%= item.transactionBalance %></span></p>
-            <p>Số tài khoản hưởng thụ: <%= item.accountNumberReceive %>  </p>
-            <p>Nội dung: <% if(item.content != null) { %>  <%=item.content%>  <% } %> </p>
-            <p>Thời gian: <%= moment(item.createdAt).format( 'LLLL') %></p>
-            
-           <% } %> 
-           <% if(item.type==3){ %> 
-            <p>Tài khoản được cộng: <span>+<%= item.transactionBalance %></span></p>
-           <p>Nội dung: <% if(item.content != null) { %>  <%=item.content%>  <% } %> </p>
-           <p>Thời gian: <%= moment(item.createdAt).format( 'LLLL') %></p>
-           <% } %> 
-           <p>-----------</p>
-        <% }); %>
-    <% } %> 
-</div>
-<%- include('../footer'); -%>
+<body>
+    <%- include('navbar-menu'); -%>
+        <%- include('navbar-primary'); -%>
+            <div class="main-content">
+                <div class="wrap">
+                    <div class="form-group">
+                        <form method="POST">
+                            <div class="search">
+                                <input type="text" class="searchTerm" placeholder="Nhập Số Tài Khoản" name="accountNumber">
+                                <button type="submit" class="searchButton"><i class="fa fa-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <% if(history != null){ %>
+                    <% history.forEach(function(item){ %>
+                        <p>Mã giao dịch :
+                            <%= item.tradingCode %>
+                        </p>
+                        <% if(item.currency==1){%>
+                            <p>Loại tiền: VNĐ</p>
+                            <% } %>
+                                <% if(item.currency==2){ %>
+                                    <p>Loại tiền: Dollars</p>
+                                    <% } %>
+
+                                        <% if(item.type==1){ %>
+                                            <p>Tài khoản được cộng: <span>+<%= item.transactionBalance %></span></p>
+                                            <p>Nội dung:
+                                                <% if(item.content != null) { %>
+                                                    <%=item.content%>
+                                                        <% } %>
+                                            </p>
+                                            <p>Thời gian:
+                                                <%= moment(item.createdAt).format( 'LLLL') %>
+                                            </p>
+                                            <% } %>
+                                                <% if(item.type==2){ %>
+                                                    <p>Tài khoản bị trừ: <span>-<%= item.transactionBalance %></span></p>
+                                                    <p>Số tài khoản hưởng thụ:
+                                                        <%= item.accountNumberReceive %>
+                                                    </p>
+                                                    <p>Nội dung:
+                                                        <% if(item.content != null) { %>
+                                                            <%=item.content%>
+                                                                <% } %>
+                                                    </p>
+                                                    <p>Thời gian:
+                                                        <%= moment(item.createdAt).format( 'LLLL') %>
+                                                    </p>
+
+                                                    <% } %>
+                                                        <% if(item.type==3){ %>
+                                                            <p>Tài khoản được cộng: <span>+<%= item.transactionBalance %></span></p>
+                                                            <p>Nội dung:
+                                                                <% if(item.content != null) { %>
+                                                                    <%=item.content%>
+                                                                        <% } %>
+                                                            </p>
+                                                            <p>Thời gian:
+                                                                <%= moment(item.createdAt).format( 'LLLL') %>
+                                                            </p>
+                                                            <% } %>
+                                                                <p>-----------</p>
+                                                                <% }); %>
+                                                                    <% } %>
+            </div>
+</body>
+<%- include('../footer.ejs'); -%>
+    <script>
+        $('.btn-expand-collapse').click(function(e) {
+            $('.navbar-primary').toggleClass('collapsed');
+        });
+    </script>
+    <script>
+        $("#one").click(function() {
+            window.location.href = "/transfer";
+        });
+        $("#two").click(function() {
+            window.location.href = "/history";
+        });
+        $("#three").click(function() {
+            window.location.href = "/profile";
+        });
+    </script>
+
+</html>

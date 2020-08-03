@@ -14,6 +14,13 @@
     <%- include('navbar-menu'); -%>
         <%- include('navbar-primary'); -%>
             <div class="main-content" style="padding-bottom: 197px;">
+                <!-- <div class="alert alert-success" id="success-alert">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    <strong>Thành Công! </strong> Chuyển Tiền Thành Công
+                </div> -->
+                <h1>
+                    <%= status %>
+                </h1>
                 <div class="row">
                     <div class="col-sm-1">
 
@@ -45,7 +52,7 @@
                                                 Giao dịch thành công. Hãy kiểm tra lịch sử.
                                             </div>
                                             <% } %>
-                                                <button type="submit" class="btn btn-primary">Xác nhận giao dịch</button>
+                                                <button id="myWish" type="submit" class="btn btn-primary">Xác nhận giao dịch</button>
                             </form>
                         </div>
                     </div>
@@ -57,6 +64,16 @@
     <script>
         $('.btn-expand-collapse').click(function(e) {
             $('.navbar-primary').toggleClass('collapsed');
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#success-alert").hide();
+            $("#myWish").click(function showAlert() {
+                $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
+                    $("#success-alert").slideUp(500);
+                });
+            });
         });
     </script>
 
