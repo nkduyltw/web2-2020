@@ -1,19 +1,61 @@
-<%- include('header'); -%>
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
 
-    <%if (data.length == 0){ %>
-      <h2>Không có yêu cầu nào</h2>
-      <% } %>
-        <% data.forEach(function(user){ %>
-          <div style="border: 1px;">
-            <p><%= user.identityCard %> </p>
-            <p><%= user.name %></p>
-           <img src="./../../<%= user.identityCardIMG1 %> " alt="error" srcset="">
-           <img src="./../../<%= user.identityCardIMG1 %> " alt="error" srcset="">
-           <a href="/admin/verifyUser/<%= user.id %> "> Xác nhận </a>
-          </div>
-            
-        <% }); %>
-   
-</div>
-<%- include('../footer'); -%>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('navbar-link'); -%>
+        <link rel="stylesheet" href="/style/user/profile.css">
+        <link rel="stylesheet" href="/style/1.css">
+        <link rel="stylesheet" href="/style/user/home.css">
+</head>
+
+<body>
+    <%- include('navbar-menu'); -%>
+        <%- include('navbar-primary'); -%>
+            <div class="main-content" style="height: 700px;">
+                <table class="table" id="makeEditable">
+                    <thead>
+                        <tr>
+                            <th>Tên Tài Khoản</th>
+                            <th>Số CMND/CCCD</th>
+                            <th>Ảnh CMND/CCCD</th>
+                            <th>Xác Nhận<span style="float:right">
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <% data.forEach(function(user){ %>
+                        <tr class="info">
+                            <td style="padding-top: 50px;font-size: medium;"><%= user.name %></td>
+                            <td style="padding-top: 50px;font-size: medium;"><%= user.identityCard %></td>
+                            <td>
+                              <img style="width: 100px; height: 100px;" src="./../../<%= user.identityCardIMG1 %> " alt="error" srcset="">
+                              <img style="width: 100px; height: 100px;" src="./../../<%= user.identityCardIMG1 %> " alt="error" srcset="">
+                            </td>
+                            <td style="padding-top: 30px;font-size: medium;"><button class="btn btn-success" style="width: 100px;height: 40px;"><a style="text-decoration: none;color: rgb(206, 55, 55);" href="/admin/verifyUser/<%= user.id %> "> Xác nhận </a></button></td>  
+                        </tr>
+                      <% }); %>
+                    </tbody>
+                </table>
+            </div>
+</body>
+<%- include('../footer.ejs'); -%>
+    <script>
+        $('.btn-expand-collapse').click(function(e) {
+            $('.navbar-primary').toggleClass('collapsed');
+        });
+    </script>
+    <script>
+        $("#one").click(function() {
+            window.location.href = "/transfer";
+        });
+        $("#two").click(function() {
+            window.location.href = "/history";
+        });
+        $("#three").click(function() {
+            window.location.href = "/profile";
+        });
+    </script>
+
+</html>
