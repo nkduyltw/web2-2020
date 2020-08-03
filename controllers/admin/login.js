@@ -4,7 +4,6 @@ const { render } = require('ejs');
 
 module.exports.get = async (req, res) =>{
     const admin = await Admin.findAll();
-    console.log(admin)
     if(admin.length == 0){
         Admin.create({
             name : 'admin',
@@ -22,7 +21,6 @@ module.exports.post = async (req, res) =>{
         const admin = await Admin.findName(name);
         if(name){
         if(Admin.verifyPassword(password, admin.password)){
-            delete req.session.name;
             req.session.name = admin.name;
             res.redirect('/admin/home');
         }
