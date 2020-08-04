@@ -11,7 +11,7 @@ module.exports.get = async (req, res) =>{
             password : Account.hashPassword('root'),
         });
     }
-    const result = true;
+    const result = [];
     res.render('admin/login', {result});
 }
 
