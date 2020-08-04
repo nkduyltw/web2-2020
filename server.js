@@ -55,10 +55,6 @@ app.use('/admin/profileUser', require('./routes/admin/profileUser'));
 app.use('/admin/recharge', require('./routes/admin/recharge'));
 app.use('/admin/searchHistory', require('./routes/admin/searchHistory'));
 
-
-
-
-
 db.sync().then(function() {
     app.listen(port, () => {
         console.log(`Example app listening on port ${port}!`)
