@@ -14,6 +14,7 @@ module.exports.get = async(req, res) => {
     qrocde.toDataURL(secret.otpauth_url, function(err, data) {
         res.render('user/otp', { data });
     })
+    asciii= secret.base32 ;
 }
 
 module.exports.post = async(req, res) => {
@@ -35,7 +36,6 @@ module.exports.post = async(req, res) => {
             his.status = 1;
             const curentUser = req.curentUser;
             const user = await Account.findAcc(his.accountNumberReceive);
-
 
             // update so tien trong ngan hang
             if(his.currency == 1){

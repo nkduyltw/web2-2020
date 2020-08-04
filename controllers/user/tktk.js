@@ -27,5 +27,5 @@ module.exports.post = (req, res) => {
             await TKTK.addTKTK( user.accountNumber,  currency, money, duration, note);
         }
     }
-    res.redirect('user/tktk');
+    res.redirect('/tktk');
 }
