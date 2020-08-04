@@ -3,8 +3,7 @@ const History = require('../../services/transactionHistory');
 
 module.exports.get = (req, res) => {
     const errors = [];
-    const status = null;
-    res.render('user/transfer', { status, errors })
+    res.render('user/transfer', { errors})
 }
 
 module.exports.post = async(req, res) => {
@@ -15,8 +14,7 @@ module.exports.post = async(req, res) => {
     if (curentUser.accountNumber.trim() == accountNumber.trim()) {
         const error = 'M điên à, Sao tự chuyển tiền cho mình thế!';
         errors.push(error);
-        const status = false;
-        res.render('user/transfer', { status, errors });
+        res.render('user/transfer', { errors });
     } else {
         // chuyen tien den nguoi khac cung ngan hang . don vi tien te : VND
         if (type == 1) {
@@ -30,8 +28,7 @@ module.exports.post = async(req, res) => {
                 errors.push(error);
             }
             if (errors.length > 0) {
-                const status = false;
-                res.render('user/transfer', { status, errors });
+                res.render('user/transfer', { errors });
             } else {
                 curentUser.blanceSpendAccountVND = curentUser.blanceSpendAccountVND - amountOfMoney;
                 user.blanceSpendAccountVND = user.blanceSpendAccountVND + amountOfMoney;
@@ -55,8 +52,7 @@ module.exports.post = async(req, res) => {
                 errors.push(error);
             }
             if (errors.length > 0) {
-                const status = false;
-                res.render('user/transfer', { status, errors });
+                res.render('user/transfer', { errors });
             } else {
                 curentUser.blanceSpendAccountDollars = curentUser.blanceSpendAccountDollars - amountOfMoney;
                 user.blanceSpendAccountDollars = user.blanceSpendAccountDollars + amountOfMoney;
@@ -64,7 +60,6 @@ module.exports.post = async(req, res) => {
                 user.save();
                 await History.add2(curentUser.accountNumber, user.accountNumber, amountOfMoney, 2, content);
                 //await History.add3(user.accountNumber, amountOfMoney, 2, content);
-                const status = true;
                 res.redirect('transfer');
             }
         }
