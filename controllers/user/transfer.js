@@ -3,6 +3,9 @@ const History = require('../../services/transactionHistory');
 
 module.exports.get = (req, res) => {
     const errors = [];
+    const error = req.session.error ;
+    delete req.session.error;
+    errors.push(error);
     res.render('user/transfer', { errors })
 }
 
@@ -39,7 +42,7 @@ module.exports.post = async(req, res) => {
                 //dung thong tin bat dau chuyen 
                 //await History.add3(user.accountNumber, amountOfMoney, 1, content);
                 req.session.tradingCode = his.tradingCode;
-                res.redirect('user/otp');
+                res.redirect('/otp');
             }
         }
 
@@ -63,7 +66,7 @@ module.exports.post = async(req, res) => {
                 // user.save();
                 await History.add2(curentUser.accountNumber, user.accountNumber, amountOfMoney, 2, content);
                 //await History.add3(user.accountNumber, amountOfMoney, 2, content);
-                res.redirect('user/otp');
+                res.redirect('/otp');
             }
         }
     }

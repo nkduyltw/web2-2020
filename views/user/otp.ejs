@@ -1,6 +1,10 @@
 <%- include('header'); -%>
     <div class="container" style="text-align: center;">
-        <img src=" <%= data %>" alt="">
-        <input type="text" placeholder="Nhập mã Google Authenticator">
+        <form action="" method="post">
+            <img src=" <%= data %>" alt="">
+            <input type="text" placeholder="Nhập mã Google Authenticator">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        
     </div>
     <%- include('../footer'); -%>

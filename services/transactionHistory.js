@@ -30,7 +30,7 @@ class transactionHistory extends Model {
                 transactionBalance: transactionBalance,
                 currency: currency,
                 content: content,
-                status
+                status:0
             });
         }
         //chuyen tien den 1 nguoi khac cung ngan hang
@@ -45,7 +45,7 @@ class transactionHistory extends Model {
                 transactionBalance: transactionBalance,
                 currency: currency,
                 content: content,
-                status
+                status:0
             });
         }
         // lich su tao tai khoan tiet kiem
@@ -60,7 +60,7 @@ class transactionHistory extends Model {
             transactionBalance: transactionBalance,
             currency: currency,
             content: content,
-            status
+            status :0
         });
     }
 
@@ -92,8 +92,6 @@ class transactionHistory extends Model {
                 ['createdAt', 'DESC'],
             ],
         });
-
-
     }
 
     //tim chi tiet giao dich bang code
@@ -149,11 +147,11 @@ transactionHistory.init({
     // 0 chua xac nhan otp
     // 1 xac nhan otp dung cho phep chuyen
     // 2 giao dich bi 
-    // status: {
-    //     type: Sequelize.INTEGER,
-    //     allowNull: false,
-    //     defaultValue: 0,
-    // }
+    status: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+    }
 }, {
     sequelize: db,
     modelName: 'transactionHistory',
