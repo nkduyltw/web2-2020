@@ -9,74 +9,134 @@
         <link rel="stylesheet" href="/style/user/profile.css">
         <link rel="stylesheet" href="/style/1.css">
         <link href="/style/user/history.css">
+        <style>
+            body {
+                padding: 20px 20px;
+            }
+            
+            .results tr[visible='false'],
+            .no-result {
+                display: none;
+            }
+            
+            .results tr[visible='true'] {
+                display: table-row;
+            }
+            
+            .counter {
+                padding: 8px;
+                color: #ccc;
+            }
+        </style>
 </head>
 
 <body>
     <%- include('navbar-menu'); -%>
         <%- include('navbar-primary'); -%>
             <div class="main-content">
-                <div class="row">
-                    <div class="col-sm-1">
-
-                    </div>
-                    <div class="col-sm-10">
-                        <div class="form-group">
-                            <h1>Lịch sử giao dịch</h1>
-                            <!-- co du lieu roi dem ra gium tao nhe -->
-                            <% histories.forEach(function(history){ %>
-                                <p>Mã giao dịch :
-                                    <%= history.tradingCode %>
-                                </p>
-                                <% if(history.currency==1){%>
-                                    <p>Loại tiền: VNĐ</p>
-                                    <% } %>
-                                        <% if(history.currency==2){ %>
-                                            <p>Loại tiền: Dollars</p>
-                                            <% } %>
-
-                                                <% if(history.type==1){ %>
-                                                    <p>Tài khoản được cộng: <span>+<%= history.transactionBalance %></span></p>
-                                                    <p>Nội dung:
-                                                        <% if(history.content != null) { %>
-                                                            <%=history.content%>
-                                                                <% } %>
-                                                    </p>
-                                                    <p>Thời gian:
-                                                        <%= moment(history.createdAt).format( 'LLLL') %>
-                                                    </p>
-                                                    <% } %>
-                                                        <% if(history.type==2){ %>
-                                                            <p>Tài khoản bị trừ: <span>-<%= history.transactionBalance %></span></p>
-                                                            <p>Số tài khoản hưởng thụ:
-                                                                <%= history.accountNumberReceive %>
-                                                            </p>
-                                                            <p>Thời gian:
-                                                                <%= moment(history.createdAt).format( 'LLLL') %>
-                                                            </p>
-                                                            <% } %>
-                                                                <% if(history.type==3){ %>
-                                                                    <p>Tài khoản được cộng: <span>+<%= history.transactionBalance %></span></p>
-                                                                    <p>Nội dung:
-                                                                        <% if(history.content != null) { %>
-                                                                            <%=history.content%>
-                                                                                <% } %>
-                                                                    </p>
-                                                                    <p>Thời gian:
-                                                                        <%= moment(history.createdAt).format( 'LLLL') %>
-                                                                    </p>
-                                                                    <% } %>
-                                                                        <p>-----------</p>
-                                                                        <% }); %>
-
-                        </div>
-                    </div>
+                <h1 style="color: rgb(25, 148, 148);">Lịch Sử Giao Dịch</h1>
+                <div class="form-group pull-right">
+                    <input type="text" class="search form-control" placeholder="Nhập từ khóa tìm kiếm">
                 </div>
-  </div>
+                <span class="counter pull-right"></span>
+                <table class="table table-hover table-bordered results">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Mã Giao Dịch </th>
+                            <th>Thời Gian</th>
+                            <th>Loại Giao Dịch</th>
+                            <th>Giá Trị</th>
+                            <th>Đơn Vị</th>
+                            <th>Chi Tiết</th>
+                        </tr>
+                        <tr class="warning no-result">
+                            <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% histories.forEach(function(history, index){ %>
+                            <tr>
+                                <th scope="row">
+                                    <%= index + 1 %>
+                                </th>
+                                <td>
+                                    <%= history.tradingCode %>
+                                </td>
+                                <td>
+                                    <%= moment(history.createdAt).format( 'LLLL') %>
+                                </td>
+                                <td>
+                                    <% if(history.type==1){ %>
+                                        Nạp tiền
+                                        <% } %>
+                                            <% if(history.type==2){ %>
+                                                Chuyển tiền
+                                                <% } %>
+                                </td>
+                                <td>
+                                    <% if(history.type==1){ %>
+                                        +
+                                        <%= history.transactionBalance %>
+                                            <% } %>
+                                                <% if(history.type==2){ %>
+                                                    -
+                                                    <%= history.transactionBalance %>
+                                                        <% } %>
+                                </td>
+                                <td>
+                                    <% if(history.currency==1){%>
+                                        <p>VNĐ</p>
+                                        <% } %>
+                                            <% if(history.currency==2){ %>
+                                                <p>Dollars</p>
+                                                <% } %>
+                                </td>
+                                <td>
+                                    <a href="/detailhistory/<%=history.tradingCode%> ">Xem</a>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </div>
 </body>
 <%- include('../footer.ejs'); -%>
     <script>
         $('.btn-expand-collapse').click(function(e) {
             $('.navbar-primary').toggleClass('collapsed');
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(".search").keyup(function() {
+                var searchTerm = $(".search").val();
+                var listItem = $('.results tbody').children('tr');
+                var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
+
+                $.extend($.expr[':'], {
+                    'containsi': function(elem, i, match, array) {
+                        return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+                    }
+                });
+
+                $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e) {
+                    $(this).attr('visible', 'false');
+                });
+
+                $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e) {
+                    $(this).attr('visible', 'true');
+                });
+
+                var jobCount = $('.results tbody tr[visible="true"]').length;
+                $('.counter').text(jobCount + ' item');
+
+                if (jobCount == '0') {
+                    $('.no-result').show();
+                } else {
+                    $('.no-result').hide();
+                }
+            });
         });
     </script>
 

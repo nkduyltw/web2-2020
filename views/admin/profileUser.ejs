@@ -1,22 +1,103 @@
-<%- include('header'); -%>
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
 
-  <% if (user) { %>
-    <p><%= user.accountNumber %> </p>
-    <p><%= user.name %> </p>
-    <p><%= user.identityCard %> </p>
-    <p><%= user.address %> </p>
-    <p><%= user.phoneNumber %> </p>
-    <p><%= user.email %> </p>
-    <p><%= user.blanceSpendAccountVND %> </p>
-    <p><%= user.blanceSpendAccountDollars %> </p>
-    <% if (user.status ) { %>
-      <p>Đang hoạt động </p>
-      <% } %>
-      <% if (!user.status ) { %>
-        <p>Chưa xác minh hoặc đã bị khóa </p>
-        <% } %>
-  <% } %>
-   
-</div>
-<%- include('../footer'); -%>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('navbar-link'); -%>
+        <link rel="stylesheet" href="/style/user/profile.css">
+        <link rel="stylesheet" href="/style/1.css">
+</head>
+
+<body>
+    <%- include('navbar-menu'); -%>
+        <%- include('navbar-primary'); -%>
+            <div class="main-content" style="padding-bottom: 82px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <img class="pic img-circle" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="User photo" />
+                            <div class="username">
+                                <%= user.name %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="profile-item-header">  Profile:</span>
+                        <div class="edit-profile">
+                            <form id="editProfileForm" method="post">
+                                <div class="form-group row">
+                                    <label class="col-xs-3 form-control-label" for="stk">Số Tài Khoản</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" id="stk" placeholder="" value="<%= user.accountNumber %>" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 form-control-label" for="sdtk">Số Dư Tài Khoản</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= curentUser.blanceSpendAccountVND %> VND" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 form-control-label" for="sdtk">CMND/CCCD/Hộ chiếu</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= user.identityCard %>" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 form-control-label" for="sdtk">Số Điện Thoại</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= user.phoneNumber %>" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 form-control-label" for="sdtk">Đỉa Chỉ</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= user.address %>" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 form-control-label" for="sdtk">Email</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= user.email %>" disabled>
+                                    </div>
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 form-control-label" for="sdtk">Số Dư Tài Khoản</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= user.blanceSpendAccountVND %>" disabled>
+                                    </div>
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 form-control-label" for="sdtk">Tình Trạng</label>
+                                    <div class="col-xs-9">
+                                        <input type="text" class="form-control" id="sdtk" placeholder="" value="<% if (user.status ) { %>
+                                        Đang hoạt động
+                                        <% } %>
+                                            <% if (!user.status ) { %>
+                                                Chưa xác minh hoặc đã bị khóa
+                                            <% } %>" disabled>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</body>
+<%- include('../footer.ejs'); -%>
+    <script>
+        $('.btn-expand-collapse').click(function(e) {
+            $('.navbar-primary').toggleClass('collapsed');
+        });
+    </script>
+
+</html>
+<script>
+</script>

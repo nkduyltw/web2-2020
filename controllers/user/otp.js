@@ -1,5 +1,6 @@
 const speakeasy = require('speakeasy');
 const qrocde = require('qrcode');
+const History = require('../../services/transactionHistory');
 var asciii = '';
 var secret = '';
 module.exports.get = async(req, res) => {
@@ -21,7 +22,22 @@ module.exports.post = async(req, res) => {
     });
     if (verify == true) {
         //nếu mã otp đúng thì trả về...
+        const tradingCode = req.tradingCode;
+        const his = await History.findByTradingCode(tradingCode);
+        // update history
+        his.status = 1;
+        his.save();
+        // update so tien trong ngan hang
+
+
+
+        //redirec
+
+        res.redirec('user/transfer');
+
     } else {
         //nếu otp sai thì trả về gì đó...
+
+        //huy giao dich
     }
 }

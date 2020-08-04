@@ -32,10 +32,6 @@ app.use(require('./middlewares/user/auth'));
 
 //app use routes user
 app.get('/', require('./routes/index'));
-
-app.get('/changepassword', function(req, res) {
-    res.render('user/changepassword');
-});
 app.use('/login', require('./routes/user/login'));
 app.use('/logout', require('./routes/user/logout'));
 app.use('/home', require('./routes/user/home'));
@@ -45,6 +41,8 @@ app.use('/otp', require('./routes/user/otp'));
 app.use('/history', require('./routes/user/history'));
 app.use('/profile', require('./routes/user/profile'));
 app.use('/editprofile', require('./routes/user/editprofile'));
+app.use('/detailhistory', require('./routes/user/detailhistory'));
+app.use('/changepassword', require('./routes/user/changepassword'));
 
 //app use routes admin
 app.use('/admin/login', require('./routes/admin/login'));
