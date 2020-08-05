@@ -64,21 +64,7 @@ class transactionHistory extends Model {
         });
     }
 
-    /*//nhan tien tu 1 nguoi khac cung ngan hang
-    static async add3(accountNumber,accountNumberReceive,transactionBalance,currency,content){
-        const type = 3;
-        const tradingCode = await this.createCode();
-        return transactionHistory.create({
-            tradingCode: tradingCode,
-            type: type,
-            accountNumber: accountNumber,
-            accountNumberReceive: accountNumberReceive,
-            transactionBalance: transactionBalance,
-            currency: currency,
-            content: content
-        });
-    }*/
-    // duyet lich su giao dich cua nguoi dung
+    
     static async searchAllHistory(accountNumber) {
         return transactionHistory.findAll({
             where: {
@@ -99,6 +85,7 @@ class transactionHistory extends Model {
         return transactionHistory.findOne({
             where: { tradingCode, }
         });
+        
     }
 
 }

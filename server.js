@@ -43,6 +43,7 @@ app.use('/profile', require('./routes/user/profile'));
 app.use('/editprofile', require('./routes/user/editprofile'));
 app.use('/detailhistory', require('./routes/user/detailhistory'));
 app.use('/changepassword', require('./routes/user/changepassword'));
+app.use('/tktk', require('./routes/user/tktk'));
 
 //app use routes admin
 app.use('/admin/login', require('./routes/admin/login'));

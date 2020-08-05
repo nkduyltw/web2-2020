@@ -15,13 +15,13 @@ class TKTK extends Model{
     }
     static async addTKTK(accountNumber, currency, money, duration, note){
         const TKTKCode = await createCode();
-        await History.add3(accountNumber, money);
-        return TKTK.create(TKTKCode, accountNumber, currency, money, duration, note);
+        return TKTK.create(TKTKCode, accountNumber, currency, money, duration, note, false, 0);
     }
     static async search(accountNumber){
         return TKTK.findAll({
             where:{
                 accountNumber,
+                status: 1,
             }
         })
     }
@@ -66,6 +66,10 @@ TKTK.init({
     done:{
         type: Sequelize.BOOLEAN,
         defaultValue: false
+    },
+    status:{
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
     }
 },
     {

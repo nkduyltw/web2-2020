@@ -42,6 +42,7 @@ module.exports.post = async(req, res) => {
                 //dung thong tin bat dau chuyen 
                 //await History.add3(user.accountNumber, amountOfMoney, 1, content);
                 req.session.tradingCode = his.tradingCode;
+                req.session.backURL = '/transfer';
                 res.redirect('/otp');
             }
         }
@@ -64,8 +65,10 @@ module.exports.post = async(req, res) => {
                 // user.blanceSpendAccountDollars = user.blanceSpendAccountDollars + amountOfMoney;
                 // curentUser.save();
                 // user.save();
-                await History.add2(curentUser.accountNumber, user.accountNumber, amountOfMoney, 2, content);
+                const his = await History.add2(curentUser.accountNumber, user.accountNumber, amountOfMoney, 2, content);
                 //await History.add3(user.accountNumber, amountOfMoney, 2, content);
+                req.session.tradingCode = his.tradingCode;
+                req.session.backURL = '/transfer';
                 res.redirect('/otp');
             }
         }

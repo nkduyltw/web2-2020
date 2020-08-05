@@ -42,7 +42,7 @@
                         </div>
                     </div>
 
-                    <div class="card 4">
+                    <div class="card 4" id="four">
                         <div class="card_image">
                             <img src="https://media.giphy.com/media/l0MYHq0IFikDrVQOc/giphy.gif" />
                         </div>
@@ -62,13 +62,19 @@
     </script>
     <script>
         $("#one").click(function() {
-            window.location.href = "/transfer";
+            window.location.href = "/admin/verifyUser";
         });
         $("#two").click(function() {
-            window.location.href = "/history";
+            window.location.href = "/admin/findingCustomers";
         });
         $("#three").click(function() {
-            window.location.href = "/profile";
+            window.location.href = "/admin/recharge";
+        });
+        $("#three").click(function() {
+            window.location.href = "/admin/recharge";
+        });
+        $("#four").click(function() {
+            window.location.href = "/admin/searchHistory";
         });
     </script>
 

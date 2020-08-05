@@ -15,7 +15,7 @@ module.exports.post = async(req, res) => {
         } else {
             curentUser.password = Account.hashPassword(newpw);
             curentUser.save();
-            res.redirect('user/changepassword');
+            res.redirect('/changepassword');
         }
     } else {
         const error = 'Mật khẩu cũ không chính xác';
