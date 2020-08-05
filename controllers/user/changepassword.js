@@ -2,7 +2,7 @@ const Account = require('../../services/account');
 
 module.exports.get = async(req, res) => {
     // const curentUser = req.curentUser;
-    const error = null;
+    const error = "";
     res.render('user/changepassword', { error });
 }
 module.exports.post = async(req, res) => {
