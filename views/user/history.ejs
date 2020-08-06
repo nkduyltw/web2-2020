@@ -73,6 +73,9 @@
                                             <% if(history.type==2){ %>
                                                 Chuyển tiền
                                                 <% } %>
+                                                <% if(history.type==3){ %>
+                                                    mở tài khoản tiết kiệm
+                                                    <% } %>
                                 </td>
                                 <td>
                                     <% if(history.type==1){ %>
@@ -83,6 +86,10 @@
                                                     -
                                                     <%= history.transactionBalance %>
                                                         <% } %>
+                                                        <% if(history.type==3){ %>
+                                                            -
+                                                            <%= history.transactionBalance %>
+                                                                <% } %>
                                 </td>
                                 <td>
                                     <% if(history.currency==1){%>

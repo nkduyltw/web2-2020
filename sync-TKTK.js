@@ -16,6 +16,7 @@ db.sync().then(async function (){
         const data = await tktk.findAll({
             where: {
                 done: false,
+                status: 1,
             }
         });
         var count = 0;

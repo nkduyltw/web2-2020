@@ -1,21 +1,15 @@
 const Sequelize = require('sequelize');
 const db=require('./db');
-const bcrypt = require('bcrypt');
-const { where } = require('sequelize');
-const History =  require('./transactionHistory');
+const cryptoRandomString = require('crypto-random-string');
 
 const Model=Sequelize.Model;
 class TKTK extends Model{
-    static async createCode(){
-        TKTKCode = cryptoRandomString({length: 5, type: 'base64'});
-            temp = await TKTK.findAll({where: {TKTKCode} });
-            if(temp.length){
-                return TKTKCode;
-            }
+    static createCode(){
+       return  cryptoRandomString({length: 5, type: 'base64'});
     }
     static async addTKTK(accountNumber, currency, money, duration, note){
-        const TKTKCode = await createCode();
-        return TKTK.create(TKTKCode, accountNumber, currency, money, duration, note, false, 0);
+        const TKTKCode = this.createCode();
+        return this.create({TKTKCode, accountNumber, currency, money, duration, note,done: false,status: 0});
     }
     static async search(accountNumber){
         return TKTK.findAll({
@@ -35,12 +29,6 @@ TKTK.init({
     },
     accountNumber:{
         type: Sequelize.CHAR,
-        allowNull: false,
-    },
-    // 1 có kỳ hạn
-    // 2 không kỳ hạn
-    type:{
-        type: Sequelize.INTEGER,
         allowNull: false,
     },
     // currency = 1 : VND

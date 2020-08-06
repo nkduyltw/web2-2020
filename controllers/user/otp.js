@@ -2,6 +2,7 @@ const speakeasy = require('speakeasy');
 const qrocde = require('qrcode');
 const History = require('../../services/transactionHistory');
 const Account = require('../../services/account');
+const TKTK = require('../../services/TKTK');
 
 var asciii = '';
 var secret = '';
@@ -55,7 +56,9 @@ module.exports.post = async(req, res) => {
                 const error = null ;
                 req.session.error = error;
                 delete req.session.tradingCode  ;
-                res.redirect('/transfer');
+                const backURL = req.session.backURL ;
+                delete req.session.backURL  ;
+                res.redirect(backURL);
                 
             }
             else {
@@ -71,8 +74,49 @@ module.exports.post = async(req, res) => {
             }
             
     
+        }
+        if(his.type == 3){
+            if(his.status == 0){
+                 // update history
+                    his.status = 1;
+                    const curentUser = req.curentUser;
+
+                    const TKTKCode = req.session.tktkCode;
+                    const tktk = await TKTK.findOne({where: {TKTKCode}});
+                    tktk.status = 1;
+                    // update so tien trong ngan hang
+                    if(his.currency == 1){
+                        curentUser.blanceSpendAccountVND -= his.transactionBalance;
+                    }
+                    if(his.currency == 2){
+                        curentUser.blanceSpendAccountDollars -= his.transactionBalance;
+                    }
+
+                    tktk.save();
+                    his.save();
+                    curentUser.save();
+
+                    //redirect
+                    const error = null ;
+                    req.session.error = error;
+                    delete req.session.tradingCode  ;
+                    const backURL = req.session.backURL ;
+                    delete req.session.backURL  ;
+                    res.redirect(backURL);
+            }else {
+                //giao dich da co trang thai hoan tat
+                const error = 'Giao dịch đã có trạng thái. vui lòng kiểm tra lại.' ;
+                req.session.error = error;
+
+                delete req.session.tradingCode  ;
+                const backURL = req.session.backURL ;
+                delete req.session.backURL  ;
+                //huy giao dich
+                res.redirect(backURL);
+            }
+           
         } 
-        
+    
         }
         else {
             //nếu otp sai thì trả về gì đó...

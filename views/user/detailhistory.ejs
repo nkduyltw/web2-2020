@@ -59,6 +59,7 @@
                                                         <%=history.content%>
                                                             <% } %>
                                                 </p>
+                                                
                                                 <p>Thời gian:
                                                     <%= moment(history.createdAt).format( 'LLLL') %>
                                                 </p>
@@ -73,7 +74,7 @@
                                                         </p>
                                                         <% } %>
                                                             <% if(history.type==3){ %>
-                                                                <p>Tài khoản được cộng: <span>+<%= history.transactionBalance %></span></p>
+                                                                <p>Tài khoản bị trừ: <span>-<%= history.transactionBalance %></span></p>
                                                                 <p>Nội dung:
                                                                     <% if(history.content != null) { %>
                                                                         <%=history.content%>
@@ -83,6 +84,15 @@
                                                                     <%= moment(history.createdAt).format( 'LLLL') %>
                                                                 </p>
                                                                 <% } %>
+                                                                <% if(history.status==0){ %>
+                                                                    Trạng thái giao dịch: Chưa hoàn thành
+                                                                <% } %> 
+                                                                <% if(history.status==1){ %>
+                                                                    Trạng thái giao dịch: Thành công
+                                                                <% } %> 
+                                                                <% if(history.status==2){ %>
+                                                                    Trạng thái giao dịch: Thất bại
+                                                                <% } %> 
                                                                     <p>-----------</p>
 
                         </div>
