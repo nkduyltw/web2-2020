@@ -49,6 +49,8 @@
                                             </p>
                                             <% } %>
                                                 <% if(item.type==2){ %>
+                                                   
+                                                    <% if( item.accountNumber.trim()==accountNumber.trim()){ %> 
                                                     <p>Tài khoản bị trừ: <span>-<%= item.transactionBalance %></span></p>
                                                     <p>Số tài khoản hưởng thụ:
                                                         <%= item.accountNumberReceive %>
@@ -61,10 +63,22 @@
                                                     <p>Thời gian:
                                                         <%= moment(item.createdAt).format( 'LLLL') %>
                                                     </p>
-
+                                                    <% } %>
+                                                    <% if(item.accountNumberReceive.trim()==accountNumber.trim()){ %> 
+                                                    <p>Tài khoản được cộng thêm: <span>+<%= item.transactionBalance %></span></p>
+                                                    
+                                                    <p>Nội dung:
+                                                        <% if(item.content != null) { %>
+                                                            <%=item.content%>
+                                                                <% } %>
+                                                    </p>
+                                                    <p>Thời gian:
+                                                        <%= moment(item.createdAt).format( 'LLLL') %>
+                                                    </p>
+                                                    <% } %>
                                                     <% } %>
                                                         <% if(item.type==3){ %>
-                                                            <p>Tài khoản được cộng: <span>+<%= item.transactionBalance %></span></p>
+                                                            <p>Tài khoản bị trừ: <span>-<%= item.transactionBalance %></span></p>
                                                             <p>Nội dung:
                                                                 <% if(item.content != null) { %>
                                                                     <%=item.content%>

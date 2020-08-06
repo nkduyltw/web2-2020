@@ -22,13 +22,15 @@ module.exports.post = async(req, res) => {
     var verify = speakeasy.totp.verify({
         secret: asciii,
         encoding: 'base32',
-        token: req.body.otp
+        token: req.body.otp,
+        //time: 1000*60,
     });
         const tradingCode = req.session.tradingCode;
         delete req.session.tradingCode;
         const his = await History.findByTradingCode(tradingCode);
     if (verify == true) {
         //nếu mã otp đúng thì trả về...
+        console.log(verify)
         if(his.type == 2){
             if(his.status == 0){
                 // update history
@@ -38,13 +40,13 @@ module.exports.post = async(req, res) => {
     
                 // update so tien trong ngan hang
                 if(his.currency == 1){
-                    curentUser.blanceSpendAccountVND -= his.transactionBalance;
-                    user.blanceSpendAccountVND += his.transactionBalance;
+                    curentUser.blanceSpendAccountVND -= parseInt(his.transactionBalance);
+                    user.blanceSpendAccountVND += parseInt(his.transactionBalance);
                 }
     
                 if(his.currency == 2){
-                    curentUser.blanceSpendAccountDollars -= his.transactionBalance;
-                    user.blanceSpendAccountDollars += his.transactionBalance;
+                    curentUser.blanceSpendAccountDollars -= parseInt(his.transactionBalance);
+                    user.blanceSpendAccountDollars += parseInt(his.transactionBalance);
                 }
     
                 his.save();
@@ -114,9 +116,7 @@ module.exports.post = async(req, res) => {
                 //huy giao dich
                 res.redirect(backURL);
             }
-           
-        } 
-    
+        }
         }
         else {
             //nếu otp sai thì trả về gì đó...
