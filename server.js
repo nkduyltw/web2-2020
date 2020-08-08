@@ -23,9 +23,6 @@ app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
 }));
 
-app.use((req, res) => {
-    res.render('404',{layout : false});
-})
 
 //middlewares
 app.use(require('./middlewares/admin/auth'));
@@ -59,7 +56,9 @@ app.use('/admin/findingCustomers', require('./routes/admin/findingCustomers'));
 app.use('/admin/profileUser', require('./routes/admin/profileUser'));
 app.use('/admin/recharge', require('./routes/admin/recharge'));
 app.use('/admin/searchHistory', require('./routes/admin/searchHistory'));
-
+app.use((req, res) => {
+    res.render('404', { layout: false });
+})
 db.sync().then(function() {
     app.listen(port, () => {
         console.log(`Example app listening on port ${port}!`)
