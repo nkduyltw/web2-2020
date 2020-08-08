@@ -24,7 +24,6 @@ app.use(cookieSession({
 }));
 
 
-
 //middlewares
 app.use(require('./middlewares/admin/auth'));
 app.use(require('./middlewares/user/auth'));
