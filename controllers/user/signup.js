@@ -56,6 +56,7 @@ module.exports.post = async(req, res) => {
                 break ;
             }
         }
+        console.log(req.files)
         identityCardIMG1 = req.files['identityCardIMG1'][0].path.split('\\').slice(1).join('\\');
         identityCardIMG2 = req.files['identityCardIMG2'][0].path.split('\\').slice(1).join('\\');
 

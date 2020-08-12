@@ -38,9 +38,16 @@
                         <li>
                             <a href="/signup" class="nav-link">Đăng Kí</a>
                         </li>
+                        <% if(!curentAdmin){ %>
                         <li>
                             <a href="/admin/login" class="nav-link">Quản trị</a>
                         </li>
+                        <% } %>
+                        <% if(curentAdmin){ %>
+                            <li>
+                                <a href="/admin/" class="nav-link">Quản trị</a>
+                            </li>
+                            <% } %>
                         <% } %>
                             <% if(curentUser){ %>
                                 <li class="nav-item">
@@ -56,6 +63,7 @@
                                     <a href="/logout" class="nav-link">Đăng Xuất</a>
                                 </li>
                                 <% } %>
+
                 </ul>
             </div>
         </div>
