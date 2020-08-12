@@ -77,6 +77,7 @@
                                     <th>Đơn Vị</th>
                                     <th>Số Tháng Gửi</th>
                                     <th>Ghi Chú</th>
+                                    <th>Trạng Thái</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -107,6 +108,13 @@
                                         </td>
                                         <td>
                                             <%= item.note %>
+                                        </td>
+                                        <td>
+                                            <% if(item.done) { %>
+                                                thành công
+                                                <% }else { %>
+                                                    thất bại
+                                                    <% } %>
                                         </td>
                                     </tr>
                                     <% }); %>
