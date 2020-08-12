@@ -30,7 +30,6 @@ class transactionHistory extends Model {
                 transactionBalance: transactionBalance,
                 currency: currency,
                 content: content,
-                status:0
             });
         }
         //chuyen tien den 1 nguoi khac cung ngan hang
@@ -63,6 +62,19 @@ class transactionHistory extends Model {
             status :0
         });
     }
+    static async add4(accountNumber, transactionBalance, currency, TKTKCode) {
+        const type = 4;
+        const tradingCode = await this.createCode();
+        const content = 'Tài khoản được cộng +' + transactionBalance + ' từ sổ tiết kiệm : ' + TKTKCode;
+        return transactionHistory.create({
+            tradingCode: tradingCode,
+            type: type,
+            accountNumber: accountNumber,
+            transactionBalance: transactionBalance,
+            currency: currency,
+            content: content,
+        });
+    }
 
     
     static async searchAllHistory(accountNumber) {
@@ -72,7 +84,8 @@ class transactionHistory extends Model {
                     { accountNumber, type: 1 },
                     { accountNumber, type: 2 },
                     { accountNumberReceive: accountNumber, type: 2 },
-                    { accountNumber, type: 3}
+                    { accountNumber, type: 3},
+                    { accountNumber, type: 4}
                 ]
             },
             order: [
@@ -100,6 +113,7 @@ transactionHistory.init({
     // type = 1 : nap tien tu admin
     // type = 2 : chuyen tien den cung ngan hang
     // type = 3 : mo tai khoan tiet kiem
+    // type = 4 : nhan tien tu tai khoan tiet kiem
     type: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -134,10 +148,10 @@ transactionHistory.init({
 
     // 0 chua xac nhan otp
     // 1 xac nhan otp dung cho phep chuyen
-    // 2 giao dich bi 
+    // 2 giao dich bi huy
     status: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         defaultValue: 0,
     }
 }, {

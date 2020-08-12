@@ -43,7 +43,7 @@ TKTK.init({
     },
     
     duration:{
-        type: Sequelize.DATE,
+        type: Sequelize.INTEGER,
         allowNull: true,
     },
 

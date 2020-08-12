@@ -8,7 +8,7 @@ const interest = require('./services/interestRate');
 
 
 
-const SYNC_INTERVAL=Number(process.env.SYNC_INTERVAL || 30000*60*24);
+const SYNC_INTERVAL=Number(process.env.SYNC_INTERVAL || 1000*60*60);
 
 db.sync().then(async function (){
     for(;;){
@@ -19,30 +19,30 @@ db.sync().then(async function (){
                 status: 1,
             }
         });
-        var count = 0;
         await data.forEach(async item =>  {
             var date = new Date();
-            if( date.setMonth(item.createdAt.getMonth() + item.duration) >= today ){
+            date.setMonth(item.createdAt.getMonth() + item.duration)
+            var nd = new Date(date);
+            if(today.getTime() >= nd.getTime()){
 
                 const user = await Account.findAcc(item.accountNumber);
-                if( item.curency == 1 ){
-                    const money = await item.money + interest.interestCalculator( item.duration, item.money );
-                    user.blanceSpendAccountVND += money ;
+                const temp = await interest.interestCalculator( item.duration, item.money );
+                const money =  parseInt(item.money)  + temp;
 
-                    count++;
+                if( item.currency == 1 ){
+                    
+                    user.blanceSpendAccountVND = user.blanceSpendAccountVND + money ;
                 }
-                if( item.curency == 2 ){
-                    const money = await item.money + interest.interestCalculator( item.duration, item.money );
-                    user.blanceSpendAccountDollars += money ;
-
-                    count++;
+                if( item.currency == 2 ){
+                    
+                    user.blanceSpendAccountDollars = user.blanceSpendAccountDollars + money ;
                 }
+                await History.add4(item.accountNumber, money, item.currency, item.TKTKCode)
                 item.done = true;
                 item.save();
+                user.save();
             }
         });
-
-        console.log('Đã hoàn tất : '+ count);
         await Bluebird.delay(SYNC_INTERVAL);
     }
 }).catch(console.error);

@@ -52,7 +52,7 @@
                                         <p>Loại tiền: Dollars</p>
                                         <% } %>
 
-                                            <% if(history.type==1){ %>
+                                            <% if(history.type==1 || history.type==4){ %>
                                                 <p>Tài khoản được cộng: <span>+<%= history.transactionBalance %></span></p>
                                                 <p>Nội dung:
                                                     <% if(history.content != null) { %>
@@ -84,6 +84,7 @@
                                                                     <%= moment(history.createdAt).format( 'LLLL') %>
                                                                 </p>
                                                                 <% } %>
+                                                                <% if(history.type!=1 && history.type!=4){ %>
                                                                 <% if(history.status==0){ %>
                                                                     Trạng thái giao dịch: Chưa hoàn thành
                                                                 <% } %> 
@@ -93,6 +94,7 @@
                                                                 <% if(history.status==2){ %>
                                                                     Trạng thái giao dịch: Thất bại
                                                                 <% } %> 
+                                                                <% } %>
                                                                     <p>-----------</p>
 
                         </div>
