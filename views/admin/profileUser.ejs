@@ -34,7 +34,12 @@
                                 <div class="form-group row">
                                     <label class="col-xs-3 form-control-label" for="stk">Số Tài Khoản</label>
                                     <div class="col-xs-9">
-                                        <input type="number" class="form-control" id="stk" placeholder="" value="<%= user.accountNumber.trim() %>">
+                                        <input type="number" class="form-control" id="stk" placeholder="" value="<%= user.accountNumber.trim() %>"disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-xs-9">
+                                        <input type="hidden" name="accountNumber" class="form-control" id="stk" placeholder="" value="<%= user.accountNumber.trim() %>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -52,36 +57,40 @@
                                 <div class="form-group row">
                                     <label class="col-xs-3 form-control-label" for="sdtk">CMND/CCCD/Hộ chiếu</label>
                                     <div class="col-xs-9">
-                                        <input type="number" class="form-control" id="sdtk" placeholder="" value="<%= user.identityCard.trim() %>">
+                                        <input name="identityCard" type="number" class="form-control" id="sdtk" placeholder="" value="<%= user.identityCard.trim() %>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-xs-3 form-control-label" for="sdtk">Số Điện Thoại</label>
                                     <div class="col-xs-9">
-                                        <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= user.phoneNumber.trim() %>">
+                                        <input type="text" name="phoneNumber" class="form-control" id="sdtk" placeholder="" value="<%= user.phoneNumber.trim() %>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-xs-3 form-control-label" for="sdtk">Đỉa Chỉ</label>
                                     <div class="col-xs-9">
-                                        <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= user.address %>">
+                                        <input type="text" name="address" class="form-control" id="sdtk" placeholder="" value="<%= user.address %>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-xs-3 form-control-label" for="sdtk">Email</label>
                                     <div class="col-xs-9">
-                                        <input type="text" class="form-control" id="sdtk" placeholder="" value="<%= user.email %>">
+                                        <input type="text" name="email" class="form-control" id="sdtk" placeholder="" value="<%= user.email %>">
                                     </div>
 
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-xs-3 form-control-label" for="sdtk">Tình Trạng</label>
                                     <div class="col-xs-9">
-                                        <input type="checkbox" <% if (user.status ) { %>checked
+                                        <input name="status" type="checkbox" <% if (user.status ) { %>checked
                                         <%} %> data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
                                     </div>
-
                                 </div>
+                                <% error.forEach(function(user){ %>
+                                    <div class="alert alert-danger" role="alert">
+                                        <%= error %> 
+                                      </div>
+                                <% }); %>
                                 <div class="col-xs-12 button-container">
 
                                     <input class="btn btn-default" type="submit" value="Save changes" />

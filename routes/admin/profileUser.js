@@ -10,4 +10,6 @@ router.get('/',asyncHandler(controller.get));
 
 router.get('/:accountNumber', asyncHandler(controller.get2));
 
+router.post('/*', asyncHandler(controller.post));
+
 module.exports=router;
