@@ -6,7 +6,7 @@ const router = Router();
 const ensureLoggedIn = require('../../middlewares/user/ensureLogin');
 router.use(ensureLoggedIn);
 
-router.get('/', controller.get);
+router.get('/', asyncHandler(controller.get));
 router.post('/', asyncHandler(controller.post) );
 
 

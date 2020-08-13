@@ -5,7 +5,6 @@ module.exports.get = async(req, res) => {
     const error = req.session.error;
     delete req.session.error;
     const tktk = await TKTK.search(req.curentUser.accountNumber);
-    console.log('ssss', tktk);
     res.render('user/tktk', { error, tktk });
 }
 module.exports.post = async(req, res) => {
