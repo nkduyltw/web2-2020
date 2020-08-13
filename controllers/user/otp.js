@@ -88,10 +88,10 @@ module.exports.post = async(req, res) => {
                     tktk.status = 1;
                     // update so tien trong ngan hang
                     if(his.currency == 1){
-                        curentUser.blanceSpendAccountVND -= his.transactionBalance;
+                        curentUser.blanceSpendAccountVND -= parseInt(his.transactionBalance);
                     }
                     if(his.currency == 2){
-                        curentUser.blanceSpendAccountDollars -= his.transactionBalance;
+                        curentUser.blanceSpendAccountDollars -= parseInt(his.transactionBalance);
                     }
 
                     tktk.save();
