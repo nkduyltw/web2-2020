@@ -64,21 +64,38 @@
                                                     <%= moment(history.createdAt).format( 'LLLL') %>
                                                 </p>
                                                 <% } %>
-                                                    <% if(history.type==2){ %>
+                                                    <% if(history.type==2 && history.accountNumber.trim()==curentUser.accountNumber.trim()){ %>
                                                         <p>Tài khoản bị trừ: <span>-<%= history.transactionBalance %></span></p>
                                                         <p>Số tài khoản hưởng thụ:
                                                             <%= history.accountNumberReceive %>
+                                                        </p>
+                                                        <p>Nội dung:
+                                                                   
+                                                            <%=history.content%>
+                                                                
                                                         </p>
                                                         <p>Thời gian:
                                                             <%= moment(history.createdAt).format( 'LLLL') %>
                                                         </p>
                                                         <% } %>
+                                                        <% if(history.type==2 && history.accountNumber.trim()!=curentUser.accountNumber.trim()){ %>
+                                                            <p>Tài khoản được dộng: <span>+<%= history.transactionBalance %></span></p>
+                                                            <p>Nội dung:
+                                                                   
+                                                                <%=history.content%>
+                                                                    
+                                                            </p>
+                                                            <p>Thời gian:
+                                                                <%= moment(history.createdAt).format( 'LLLL') %>
+                                                            </p>
+
+                                                            <% } %>
                                                             <% if(history.type==3){ %>
                                                                 <p>Tài khoản bị trừ: <span>-<%= history.transactionBalance %></span></p>
                                                                 <p>Nội dung:
-                                                                    <% if(history.content != null) { %>
+                                                                   
                                                                         <%=history.content%>
-                                                                            <% } %>
+                                                                            
                                                                 </p>
                                                                 <p>Thời gian:
                                                                     <%= moment(history.createdAt).format( 'LLLL') %>

@@ -102,7 +102,11 @@
                         <label class="custom-file-label" for="inputGroupFile02">Mặt sau CMND/CCCD</label>
                     </div>
 
-
+                    <% errors.forEach(function(error){ %>
+                        <div class="alert alert-danger" role="alert">
+                            <%= error %>
+                        </div>
+                        <% }); %>
 
                     <!-- <input type="file" name="fileToUpload" id="fileToUpload"> -->
 

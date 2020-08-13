@@ -70,25 +70,32 @@
                                     <% if(history.type==1){ %>
                                         Nạp tiền
                                         <% } %>
-                                            <% if(history.type==2){ %>
+                                            <% if(history.type==2 && history.accountNumber.trim()==curentUser.accountNumber.trim()){ %>
                                                 Chuyển tiền
                                                 <% } %>
-                                                <% if(history.type==3){ %>
-                                                    mở tài khoản tiết kiệm
+                                                <% if(history.type==2 && history.accountNumber.trim()!=curentUser.accountNumber.trim()){ %>
+                                                    Nhận tiền
                                                     <% } %>
-                                                    <% if(history.type==4){ %>
-                                                        Nhận tiền sổ tiết kiệm
+                                                    <% if(history.type==3){ %>
+                                                        mở tài khoản tiết kiệm
                                                         <% } %>
+                                                        <% if(history.type==4){ %>
+                                                            Nhận tiền sổ tiết kiệm
+                                                            <% } %>
                                 </td>
                                 <td>
                                     <% if(history.type==1){ %>
                                         +
                                         <%= history.transactionBalance %>
                                             <% } %>
-                                                <% if(history.type==2){ %>
+                                                <% if(history.type==2 && history.accountNumber.trim()==curentUser.accountNumber.trim()){ %>
                                                     -
                                                     <%= history.transactionBalance %>
                                                         <% } %>
+                                                        <% if(history.type==2 && history.accountNumber.trim()!=curentUser.accountNumber.trim()){ %>
+                                                            +
+                                                            <%= history.transactionBalance %>
+                                                                <% } %>
                                                         <% if(history.type==3){ %>
                                                             -
                                                             <%= history.transactionBalance %>
