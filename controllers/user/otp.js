@@ -45,7 +45,7 @@ module.exports.post = async(req, res) => {
     
                 if(his.currency == 2){
                     curentUser.blanceSpendAccountDollars -= parseInt(his.transactionBalance);
-                    user.blanceSpendAccountDollars += parseInt(his.transactionBalance);
+                    user.blanceSpendAccountDollars = parseInt(user.blanceSpendAccountDollars+his.transactionBalance);
                 }
     
                 his.save();
