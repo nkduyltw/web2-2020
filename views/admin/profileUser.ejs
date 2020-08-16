@@ -86,11 +86,13 @@
                                         <%} %> data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
                                     </div>
                                 </div>
-                                <% error.forEach(function(user){ %>
+                                <% if(error){ %>
+                                <% error.forEach(function(){ %>
                                     <div class="alert alert-danger" role="alert">
                                         <%= error %> 
                                       </div>
                                 <% }); %>
+                                <% } %>
                                 <div class="col-xs-12 button-container">
 
                                     <input class="btn btn-default" type="submit" value="Save changes" />

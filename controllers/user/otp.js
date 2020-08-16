@@ -30,7 +30,6 @@ module.exports.post = async(req, res) => {
         const his = await History.findByTradingCode(tradingCode);
     if (verify == true) {
         //nếu mã otp đúng thì trả về...
-        console.log(verify)
         if(his.type == 2){
             if(his.status == 0){
                 // update history
