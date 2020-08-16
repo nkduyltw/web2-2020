@@ -40,7 +40,7 @@ module.exports.post = async(req, res) => {
                 // update so tien trong ngan hang
                 if(his.currency == 1){
                     curentUser.blanceSpendAccountVND -= parseInt(his.transactionBalance);
-                    user.blanceSpendAccountVND += parseInt(his.transactionBalance);
+                    user.blanceSpendAccountVND = parseInt(user.blanceSpendAccountVND)+parseInt(his.transactionBalance);
                 }
     
                 if(his.currency == 2){
