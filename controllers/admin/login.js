@@ -19,7 +19,7 @@ module.exports.post = async (req, res) =>{
    
         const {name, password} = req.body;
         const admin = await Admin.findName(name);
-        if(name){
+        if(admin){
         if(Admin.verifyPassword(password, admin.password)){
             req.session.name = admin.name;
             res.redirect('/admin/home');
@@ -29,6 +29,9 @@ module.exports.post = async (req, res) =>{
             res.render('admin/login', {result});
         }
     }
-    
+    else{
+        const result = false;
+        res.render('admin/login', {result});
+    }
    
 }
