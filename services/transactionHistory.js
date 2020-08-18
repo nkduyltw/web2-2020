@@ -83,7 +83,7 @@ class transactionHistory extends Model {
                 [Op.or]: [
                     { accountNumber, type: 1 },
                     { accountNumber, type: 2 },
-                    { accountNumberReceive: accountNumber, type: 2 },
+                    { accountNumberReceive: accountNumber, type: 2 , status: 1},
                     { accountNumber, type: 3},
                     { accountNumber, type: 4}
                 ]
