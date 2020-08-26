@@ -27,7 +27,6 @@ module.exports.post = async(req, res) => {
                 error = 'Số dư VND hiện tại là không đủ cho giao dịch !';
                 res.render('user/tktk', { error, tktk });
             } else {
-                //(accountNumber, currency, money, duration, note)
                 const tktk = await TKTK.addTKTK(user.accountNumber, currency, money, duration, note);
                 const his = await History.add3(user.accountNumber, money, currency);
                 req.session.tradingCode = his.tradingCode;
