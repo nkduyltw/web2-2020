@@ -15,11 +15,7 @@
 </head>
 
 <body>
-    <!--Navigation-->
-    <!-- Image and text -->
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-sm navbar-light bg-light static-top" style="background-color: #22b5ab !important;">
-
         <div class="container">
             <a class="navbar-brand" href="/">
                 <img src="./img/DL.png" alt="" style="height: 30px;"> Đông Lào Bank
@@ -27,8 +23,6 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-
-
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ml-auto">
                     <% if(!curentUser){ %>
@@ -39,31 +33,30 @@
                             <a href="/signup" class="nav-link">Đăng Kí</a>
                         </li>
                         <% if(!curentAdmin){ %>
-                        <li>
-                            <a href="/admin/login" class="nav-link">Quản trị</a>
-                        </li>
-                        <% } %>
-                        <% if(curentAdmin){ %>
                             <li>
-                                <a href="/admin/" class="nav-link">Quản trị</a>
+                                <a href="/admin/login" class="nav-link">Quản trị</a>
                             </li>
                             <% } %>
-                        <% } %>
-                            <% if(curentUser){ %>
-                                <li class="nav-item">
-                                    <a href="/profile" class="nav-link">Tài Khoản Của Tôi</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/transfer" class="nav-link">Chuyển Khoản</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/" class="nav-link">Thông Báo</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/logout" class="nav-link">Đăng Xuất</a>
-                                </li>
-                                <% } %>
-
+                                <% if(curentAdmin){ %>
+                                    <li>
+                                        <a href="/admin/" class="nav-link">Quản trị</a>
+                                    </li>
+                                    <% } %>
+                                        <% } %>
+                                            <% if(curentUser){ %>
+                                                <li class="nav-item">
+                                                    <a href="/profile" class="nav-link">Tài Khoản Của Tôi</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/transfer" class="nav-link">Chuyển Khoản</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/" class="nav-link">Thông Báo</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/logout" class="nav-link">Đăng Xuất</a>
+                                                </li>
+                                                <% } %>
                 </ul>
             </div>
         </div>
@@ -86,7 +79,7 @@
                     <div class="mdl-card__actions mdl-card--border">
                         <a href="#" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" target="_blank">
                             Xem chi tiết
-      </a>
+                        </a>
                     </div>
                     <div class="mdl-card__menu">
                     </div>
@@ -160,8 +153,7 @@
             </div>
             <%- include('footer'); -%>
         </main>
-
     </div>
-    </body>
+</body>
 
-    </html>
+</html>
