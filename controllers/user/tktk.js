@@ -35,7 +35,7 @@ module.exports.doneTKTK = async(req, res) => {
         tktk.save();
         user.save();
         const url = `${process.env.HOST_WEB}/detailhistory/${his.tradingCode}`;
-        await Email.send(curentUser.email,"Thay đổi số dư",`Chi tiết giao dịch: ${url}`);
+        await Email.send(user.email,"Thay đổi số dư",`Chi tiết giao dịch: ${url}`);
     }
     else{
         const money =  parseInt(tktk.money);
@@ -52,7 +52,7 @@ module.exports.doneTKTK = async(req, res) => {
         tktk.save();
         user.save();
         const url = `${process.env.HOST_WEB}/detailhistory/${his.tradingCode}`;
-        await Email.send(curentUser.email,"Thay đổi số dư",`Chi tiết giao dịch: ${url}`);
+        await Email.send(user.email,"Thay đổi số dư",`Chi tiết giao dịch: ${url}`);
     }
     res.redirect('/tktk')
 }
