@@ -3,6 +3,7 @@ const qrocde = require('qrcode');
 const History = require('../../services/transactionHistory');
 const Account = require('../../services/account');
 const TKTK = require('../../services/TKTK');
+const email = require('../../services/email');
 
 var asciii = '';
 var secret = '';
@@ -51,8 +52,10 @@ module.exports.post = async(req, res) => {
                 his.save();
                 curentUser.save();
                 user.save();
-                
-    
+                const url = `${process.env.HOST_WEB}/detailhistory/${his.tradingCode}`;
+                console.log(url);
+                await email.send(curentUser.email,"Thay đổi số dư",`Chi tiết giao dịch: ${url}`);
+                await email.send(user.email,"Thay đổi số dư",`Chi tiết giao dịch: ${url}`);
                 //redirect
                 const error = null ;
                 req.session.error = error;
@@ -96,7 +99,9 @@ module.exports.post = async(req, res) => {
                     tktk.save();
                     his.save();
                     curentUser.save();
-
+                    const url = `${process.env.HOST_WEB}/detailhistory/${his.tradingCode}`;
+                    await email.send(curentUser.email,"Thay đổi số dư",`Chi tiết giao dịch: ${url}`);
+                    
                     //redirect
                     const error = null ;
                     req.session.error = error;
