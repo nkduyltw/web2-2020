@@ -21,6 +21,10 @@ module.exports.post = async(req, res) => {
     } else {
         // chuyen tien den nguoi khac cung ngan hang . don vi tien te : VND
         if (type == 1) {
+            if (amountOfMoney > 20000000) {
+                const error = 'không được vượt quá 20.000.000/ngày';
+                errors.push(error);
+            }
             if (amountOfMoney > curentUser.blanceSpendAccountVND) {
                 const error = 'Số dư không đủ';
                 errors.push(error);
