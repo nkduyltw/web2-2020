@@ -54,8 +54,8 @@ module.exports.post = async(req, res) => {
                 user.save();
                 const url = `${process.env.HOST_WEB}/detailhistory/${his.tradingCode}`;
                 console.log(url);
-                await email.send(curentUser.email,"Thay đổi số dư",`Chi tiết giao dịch: ${url}`);
-                await email.send(user.email,"Thay đổi số dư",`Chi tiết giao dịch: ${url}`);
+                await email.send(curentUser.email,`Thay đổi số dư tài khoản: ${user.accountNumber}`,`Chi tiết giao dịch: ${url}`);
+                await email.send(user.email,`Thay đổi số dư tài khoản: ${user.accountNumber}`,`Chi tiết giao dịch: ${url}`);
                 //redirect
                 const error = null ;
                 req.session.error = error;
@@ -100,7 +100,7 @@ module.exports.post = async(req, res) => {
                     his.save();
                     curentUser.save();
                     const url = `${process.env.HOST_WEB}/detailhistory/${his.tradingCode}`;
-                    await email.send(curentUser.email,"Thay đổi số dư",`Chi tiết giao dịch: ${url}`);
+                    await email.send(curentUser.email,`Thay đổi số dư tài khoản: ${user.accountNumber}`,`Chi tiết giao dịch: ${url}`);
                     
                     //redirect
                     const error = null ;

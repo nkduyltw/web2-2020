@@ -37,7 +37,7 @@ module.exports.post = async (req, res) => {
             const content = 'Tài khoản được cộng '+ amountOfMoney + ' VNĐ từ ngân hàng';
             console.log(content);
             await History.add1(accountNumber, amountOfMoney, 1, content);
-            email.send(user.email, 'Thay đổi số dư tài khoản',content)
+            email.send(user.email, `Thay đổi số dư tài khoản: ${user.accountNumber}`,content)
             res.redirect('/admin/recharge');
         }
         if( type == 2 ){
@@ -46,7 +46,7 @@ module.exports.post = async (req, res) => {
             //noi dung ad lam sao cho giong ngan hang that
             const content = 'Tài khoản được cộng '+ amountOfMoney + ' $ từ ngân hàng';
             await History.add1(accountNumber, amountOfMoney, 2, content);
-            email.send(user.email, 'Thay đổi số dư tài khoản',content)
+            email.send(user.email, `Thay đổi số dư tài khoản: ${user.accountNumber}`,content)
             res.redirect('/admin/recharge');
         }
     }

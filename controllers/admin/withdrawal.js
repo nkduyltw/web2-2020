@@ -43,7 +43,7 @@ module.exports.post = async (req, res) => {
                 const content = 'Tài khoản bị trừ '+ amountOfMoney + ' VNĐ từ ngân hàng';
                 console.log(content);
                 await History.add5(accountNumber, amountOfMoney, 1, content);
-                email.send(user.email, 'Thay đổi số dư tài khoản',content)
+                email.send(user.email, `Thay đổi số dư tài khoản: ${user.accountNumber}`,content)
                 res.redirect('/admin/withdrawal');
             }
         }
@@ -59,7 +59,7 @@ module.exports.post = async (req, res) => {
                 //noi dung ad lam sao cho giong ngan hang that
                 const content = 'Tài khoản bị trừ '+ amountOfMoney + ' $ từ ngân hàng';
                 await History.add5(accountNumber, amountOfMoney, 2, content);
-                email.send(user.email, 'Thay đổi số dư tài khoản',content)
+                email.send(user.email, `Thay đổi số dư tài khoản: ${user.accountNumber}`,content)
                 res.redirect('/admin/withdrawal');
             }
             
