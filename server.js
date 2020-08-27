@@ -58,6 +58,7 @@ app.use('/admin/findingCustomers', require('./routes/admin/findingCustomers'));
 app.use('/admin/profileUser', require('./routes/admin/profileUser'));
 app.use('/admin/recharge', require('./routes/admin/recharge'));
 app.use('/admin/searchHistory', require('./routes/admin/searchHistory'));
+app.use('/admin/withdrawal', require('./routes/admin/withdrawal'));
 
 app.use((req, res) => {
     res.render('404');

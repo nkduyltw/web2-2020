@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-sm-10">
                         <div class="form-group">
-                            <h1>Lịch sử giao dịch</h1>
+                            <h1>Chi tiết lịch sử giao dịch</h1>
                             <p>Mã giao dịch :
                                 <%= history.tradingCode %>
                             </p>
@@ -100,7 +100,7 @@
                                                                             <%= moment(history.createdAt).format( 'LLLL') %>
                                                                         </p>
                                                                         <% } %>
-                                                                            <% if(history.type!=1 && history.type!=4){ %>
+                                                                            <% if(history.type!=1 && history.type!=4&& history.type!=5){ %>
                                                                                 <% if(history.status==0){ %>
                                                                                     Trạng thái giao dịch: Chưa hoàn thành
                                                                                     <% } %>
@@ -111,7 +111,31 @@
                                                                                                     Trạng thái giao dịch: Thất bại
                                                                                                     <% } %>
                                                                                                         <% } %>
-                                                                                                            <p>-----------</p>
+                                                                                                           
+                                                                                                            <% if(history.type==4){ %>
+                                                                                                                <p>Tài khoản được cộng từ sổ tiết kiệm: <span>+<%= history.transactionBalance %></span></p>
+                                                                                                                <p>Nội dung:
+                                                                                                                    <% if(history.content != null) { %>
+                                                                                                                        <%=history.content%>
+                                                                                                                            <% } %>
+                                                                                                                </p>
+                                                                                                                <p>Thời gian:
+                                                                                                                    <%= moment(history.createdAt).format( 'LLLL') %>
+                                                                                                                </p>
+                                                                                                                <% } %>
+                                                                                                                   
+                                                                                                                        <% if(history.type==5){ %>
+                                                                                                                            <p>Tài khoản bị trừ cho giao dịch rút tiền từ ngân hàng: <span>-<%= history.transactionBalance %></span></p>
+                                                                                                                            <p>Nội dung:
+                                                                                                                                <% if(history.content != null) { %>
+                                                                                                                                    <%=history.content%>
+                                                                                                                                        <% } %>
+                                                                                                                            </p>
+                                                                                                                            <p>Thời gian:
+                                                                                                                                <%= moment(history.createdAt).format( 'LLLL') %>
+                                                                                                                            </p>
+                                                                                                                            <% } %>
+                                                                                                                                
 
                         </div>
                     </div>
