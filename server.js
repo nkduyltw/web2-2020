@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const cookieSession = require('cookie-session')
 const db = require('./services/db');
+const email = require('./services/email')
+
 
 const port = process.env.PORT || 3000;
 //app  use EJS
