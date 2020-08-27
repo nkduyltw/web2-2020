@@ -11,7 +11,8 @@ module.exports.get = async(req, res) => {
     const curentUser = req.curentUser;
 
     secret = speakeasy.generateSecret({
-        name: curentUser.name
+        name: curentUser.name,
+        step: 60,
     })
     qrocde.toDataURL(secret.otpauth_url, function(err, data) {
         res.render('user/otp', { data });
@@ -100,7 +101,7 @@ module.exports.post = async(req, res) => {
                     his.save();
                     curentUser.save();
                     const url = `${process.env.HOST_WEB}/detailhistory/${his.tradingCode}`;
-                    await email.send(curentUser.email,`Thay đổi số dư tài khoản: ${user.accountNumber}`,`Chi tiết giao dịch: ${url}`);
+                    await email.send(curentUser.email,`Thay đổi số dư tài khoản: ${curentUser.accountNumber}`,`Chi tiết giao dịch: ${url}`);
                     
                     //redirect
                     const error = null ;

@@ -1,11 +1,60 @@
 const TKTK = require('../../services/TKTK');
 const History = require('../../services/transactionHistory');
-
+const interest = require('../../services/interestRate');
+const Email = require('../../services/email')
 module.exports.get = async(req, res) => {
     const error = req.session.error;
     delete req.session.error;
     const tktk = await TKTK.search(req.curentUser.accountNumber);
     res.render('user/tktk', { error, tktk });
+}
+module.exports.doneTKTK = async(req, res) => {
+    const error = req.session.error;
+    delete req.session.error;
+    const {TKTKCode} = req.params;
+    const tktk = await TKTK.findOne({where:{TKTKCode}});
+    var date = new Date();
+    console.log(tktk)
+    date.setMonth(tktk.createdAt.getMonth() + tktk.duration)
+    var nd = new Date(date);
+    const today = new Date();
+    const user = await Account.findAcc(req.curentUser.accountNumber);
+    if(today.getTime() >= nd.getTime()){
+        const temp = await interest.interestCalculator( tktk.duration, tktk.money );
+        const money =  parseInt(tktk.money)  + temp;
+        if( tktk.currency == 1 ){
+                    
+            user.blanceSpendAccountVND = user.blanceSpendAccountVND + money ;
+        }
+        if( tktk.currency == 2 ){
+            
+            user.blanceSpendAccountDollars = user.blanceSpendAccountDollars + money ;
+        }
+        const his = await History.add4(user.accountNumber, money, tktk.currency, tktk.TKTKCode)
+        tktk.done = true;
+        tktk.save();
+        user.save();
+        const url = `${process.env.HOST_WEB}/detailhistory/${his.tradingCode}`;
+        await Email.send(curentUser.email,"Thay đổi số dư",`Chi tiết giao dịch: ${url}`);
+    }
+    else{
+        const money =  parseInt(tktk.money);
+        if( tktk.currency == 1 ){
+                    
+            user.blanceSpendAccountVND = user.blanceSpendAccountVND + money ;
+        }
+        if( tktk.currency == 2 ){
+            
+            user.blanceSpendAccountDollars = user.blanceSpendAccountDollars + money ;
+        }
+        const his = await History.add4(user.accountNumber, money, tktk.currency, tktk.TKTKCode)
+        tktk.done = true;
+        tktk.save();
+        user.save();
+        const url = `${process.env.HOST_WEB}/detailhistory/${his.tradingCode}`;
+        await Email.send(curentUser.email,"Thay đổi số dư",`Chi tiết giao dịch: ${url}`);
+    }
+    res.redirect('/tktk')
 }
 module.exports.post = async(req, res) => {
     var error = '';
