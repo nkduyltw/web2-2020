@@ -5,6 +5,8 @@ const moment = require('moment');
 module.exports.get = async(req, res) => {
     // lấy user đang đăng nhập
     const curentUser = req.curentUser;
+    
     const histories = await History.searchAllHistory(curentUser.accountNumber);
+
     res.render('user/history', { histories, moment });
 }
