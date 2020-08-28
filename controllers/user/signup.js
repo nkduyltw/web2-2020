@@ -78,7 +78,8 @@ module.exports.post = async(req, res) => {
             token
         });
         const content = process.env.HOST_WEB + '/login/' + accountNumber + '/' + token;
-        await Email.send(email, 'Mã kích hoạt tài khoản', content);
+        //gui mail kich hoat
+        await Email.send(email, `Kích hoạt tài khoản`, content);
         res.redirect('/');
     }
 }
