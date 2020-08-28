@@ -23,20 +23,20 @@ module.exports.post = async(req, res) => {
     status = false;
     token = cryptoRandomString({ length: 4, type: 'numeric' });
 
-    //kiem tra cmnd
+    //check cmnd
     var userTest = await Account.findAccByIdentityCard(identityCard);
     if (userTest) {
         errors.push('CMND/CCCD đã được đăng kí');
     }
 
-    //kiem tra email
+    //check email
     userTest = null;
     userTest = await Account.findAccByEmail(email);
     if (userTest) {
         errors.push('Email đã được đăng kí');
     }
 
-    //kiem tra sdt
+    //check sdt
     userTest = null;
     userTest = await Account.findAccByPhoneNumber(phoneNumber);
     if (userTest) {

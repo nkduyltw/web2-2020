@@ -74,7 +74,7 @@ module.exports.post = async(req, res) => {
                 delete req.session.tradingCode  ;
                 const backURL = req.session.backURL ;
                 delete req.session.backURL  ;
-                //huy giao dich
+                //hủy giao dịch
                 res.redirect(backURL);
             }
             
@@ -118,7 +118,7 @@ module.exports.post = async(req, res) => {
                 delete req.session.tradingCode  ;
                 const backURL = req.session.backURL ;
                 delete req.session.backURL  ;
-                //huy giao dich
+                //hủy giao dịch
                 res.redirect(backURL);
             }
         }
@@ -129,7 +129,7 @@ module.exports.post = async(req, res) => {
             his.save();
             const error = 'Sai mã OTP. Giao dịch bị hủy bỏ.' ;
             req.session.error = error;
-            //huy giao dich
+            //hủy giao dịch
             delete req.session.tradingCode  ;
             const backURL = req.session.backURL ;
             delete req.session.backURL  ;
