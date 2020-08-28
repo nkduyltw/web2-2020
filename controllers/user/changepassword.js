@@ -9,7 +9,7 @@ module.exports.post = async(req, res) => {
     const curentUser = req.curentUser;
     if (Account.verifyPassword(oldpw, curentUser.password)) {
         if (newpw != repw) {
-            const error = 'Mật khẩu và mật khẩu nhập lại không giống nhau';
+            const error = 'Mật khẩu chưa trùng khớp';
             res.render('user/changepassword', { error });
         } else {
             curentUser.password = Account.hashPassword(newpw);
