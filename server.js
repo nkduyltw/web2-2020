@@ -1,8 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
 const cookieSession = require('cookie-session')
+const app = express();
 const db = require('./services/db');
 const email = require('./services/email')
 
