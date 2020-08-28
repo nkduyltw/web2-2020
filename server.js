@@ -61,6 +61,7 @@ app.use('/admin/profileUser', require('./routes/admin/profileUser'));
 app.use('/admin/recharge', require('./routes/admin/recharge'));
 app.use('/admin/searchHistory', require('./routes/admin/searchHistory'));
 app.use('/admin/withdrawal', require('./routes/admin/withdrawal'));
+app.use('/admin/tktk', require('./routes/admin/tktk'));
 
 app.use((req, res) => {
     res.render('404');

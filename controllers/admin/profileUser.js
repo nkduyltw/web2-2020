@@ -60,6 +60,6 @@ module.exports.post = async(req, res) => {
             user.status = false;
         }
         user.save();
-        res.redirect('/admin/findingCustomers');
+        res.redirect(`/admin/profileUser/${user.accountNumber}`);
     }
 }
