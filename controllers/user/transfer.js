@@ -19,7 +19,7 @@ module.exports.post = async(req, res) => {
         errors.push(error);
         res.render('user/transfer', { errors });
     } else {
-        // chuyen tien den nguoi khac cung ngan hang . don vi tien te : VND
+        // chuyển khoản cùng ngân hàng . don vi tien te : VND
         if (type == 1) {
             if (amountOfMoney > 20000000) {
                 const error = 'không được vượt quá 20.000.000/ngày';
@@ -46,7 +46,7 @@ module.exports.post = async(req, res) => {
             }
         }
 
-        // chuyen tien den nguoi khac cung ngan hang . don vi tien te : dollar
+        // chuyển khoản cùng ngân hàng . don vi tien te : dollar
         if (type == 2) {
             if (amountOfMoney > curentUser.blanceSpendAccountDollars) {
                 const error = 'Số dư không đủ';
