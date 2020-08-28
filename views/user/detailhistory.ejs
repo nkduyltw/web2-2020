@@ -51,7 +51,7 @@
                                         <p>Loại tiền: Dollars</p>
                                         <% } %>
 
-                                            <% if(history.type==1 || history.type==4){ %>
+                                            <% if(history.type==1 ){ %>
                                                 <p>Tài khoản được cộng: <span>+<%= history.transactionBalance %></span></p>
                                                 <p>Nội dung:
                                                     <% if(history.content != null) { %>
