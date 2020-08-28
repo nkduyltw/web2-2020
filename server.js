@@ -34,6 +34,7 @@ app.use(require('./middlewares/user/auth'));
 
 
 //app use routes user
+
 app.get('/', require('./routes/index'));
 app.use('/login', require('./routes/user/login'));
 app.use('/logout', require('./routes/user/logout'));
@@ -49,6 +50,7 @@ app.use('/changepassword', require('./routes/user/changepassword'));
 app.use('/tktk', require('./routes/user/tktk'));
 
 //app use routes admin
+
 app.use('/admin/login', require('./routes/admin/login'));
 app.use('/admin/logout', require('./routes/admin/logout'));
 app.use('/admin/home', require('./routes/admin/home'));
