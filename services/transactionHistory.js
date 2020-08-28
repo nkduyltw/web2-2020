@@ -75,7 +75,19 @@ class transactionHistory extends Model {
             content: content,
         });
     }
+    static async add5(accountNumber, transactionBalance, currency, content) {
+        const type = 5;
+        const tradingCode = await this.createCode();
 
+        return transactionHistory.create({
+            tradingCode: tradingCode,
+            type: 5,
+            accountNumber: accountNumber,
+            transactionBalance: transactionBalance,
+            currency: currency,
+            content: content,
+        });
+    }
     
     static async searchAllHistory(accountNumber) {
         return transactionHistory.findAll({
@@ -83,9 +95,10 @@ class transactionHistory extends Model {
                 [Op.or]: [
                     { accountNumber, type: 1 },
                     { accountNumber, type: 2 },
-                    { accountNumberReceive: accountNumber, type: 2 },
+                    { accountNumberReceive: accountNumber, type: 2 , status: 1},
                     { accountNumber, type: 3},
-                    { accountNumber, type: 4}
+                    { accountNumber, type: 4},
+                    { accountNumber, type: 5}
                 ]
             },
             order: [

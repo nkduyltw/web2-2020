@@ -3,6 +3,7 @@ const qrocde = require('qrcode');
 const History = require('../../services/transactionHistory');
 const Account = require('../../services/account');
 const TKTK = require('../../services/TKTK');
+const email = require('../../services/email');
 
 var asciii = '';
 var secret = '';
@@ -10,7 +11,8 @@ module.exports.get = async(req, res) => {
     const curentUser = req.curentUser;
 
     secret = speakeasy.generateSecret({
-        name: curentUser.name
+        name: curentUser.name,
+        step: 60,
     })
     qrocde.toDataURL(secret.otpauth_url, function(err, data) {
         res.render('user/otp', { data });
@@ -30,7 +32,6 @@ module.exports.post = async(req, res) => {
         const his = await History.findByTradingCode(tradingCode);
     if (verify == true) {
         //nếu mã otp đúng thì trả về...
-        console.log(verify)
         if(his.type == 2){
             if(his.status == 0){
                 // update history
@@ -40,20 +41,22 @@ module.exports.post = async(req, res) => {
     
                 // update so tien trong ngan hang
                 if(his.currency == 1){
-                    curentUser.blanceSpendAccountVND -= parseInt(his.transactionBalance);
-                    user.blanceSpendAccountVND += parseInt(his.transactionBalance);
+                    curentUser.blanceSpendAccountVND =parseInt(curentUser.blanceSpendAccountVND)  - parseInt(his.transactionBalance);
+                    user.blanceSpendAccountVND = parseInt(user.blanceSpendAccountVND)+parseInt(his.transactionBalance);
                 }
     
                 if(his.currency == 2){
-                    curentUser.blanceSpendAccountDollars -= parseInt(his.transactionBalance);
-                    user.blanceSpendAccountDollars += parseInt(his.transactionBalance);
+                    curentUser.blanceSpendAccountDollars = parseInt(user.blanceSpendAccountDollars)-parseInt(his.transactionBalance);
+                    user.blanceSpendAccountDollars = parseInt(user.blanceSpendAccountDollars)+parseInt(his.transactionBalance);
                 }
     
                 his.save();
                 curentUser.save();
                 user.save();
-                
-    
+                const url = `${process.env.HOST_WEB}/detailhistory/${his.tradingCode}`;
+                console.log(url);
+                await email.send(curentUser.email,`Thay đổi số dư tài khoản: ${user.accountNumber}`,`Chi tiết giao dịch: ${url}`);
+                await email.send(user.email,`Thay đổi số dư tài khoản: ${user.accountNumber}`,`Chi tiết giao dịch: ${url}`);
                 //redirect
                 const error = null ;
                 req.session.error = error;
@@ -88,16 +91,18 @@ module.exports.post = async(req, res) => {
                     tktk.status = 1;
                     // update so tien trong ngan hang
                     if(his.currency == 1){
-                        curentUser.blanceSpendAccountVND -= his.transactionBalance;
+                        curentUser.blanceSpendAccountVND =parseInt(curentUser.blanceSpendAccountVND)  - parseInt(his.transactionBalance);
                     }
                     if(his.currency == 2){
-                        curentUser.blanceSpendAccountDollars -= his.transactionBalance;
+                        curentUser.blanceSpendAccountDollars = parseInt(user.blanceSpendAccountDollars)-parseInt(his.transactionBalance);
                     }
 
                     tktk.save();
                     his.save();
                     curentUser.save();
-
+                    const url = `${process.env.HOST_WEB}/detailhistory/${his.tradingCode}`;
+                    await email.send(curentUser.email,`Thay đổi số dư tài khoản: ${curentUser.accountNumber}`,`Chi tiết giao dịch: ${url}`);
+                    
                     //redirect
                     const error = null ;
                     req.session.error = error;

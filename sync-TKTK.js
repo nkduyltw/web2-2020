@@ -5,7 +5,7 @@ const tktk = require('./services/TKTK');
 const History = require('./services/transactionHistory');
 const Account = require('./services/account');
 const interest = require('./services/interestRate');
-
+const email = require('./services/email');
 
 
 const SYNC_INTERVAL=Number(process.env.SYNC_INTERVAL || 1000*60*60);
@@ -37,10 +37,12 @@ db.sync().then(async function (){
                     
                     user.blanceSpendAccountDollars = user.blanceSpendAccountDollars + money ;
                 }
-                await History.add4(item.accountNumber, money, item.currency, item.TKTKCode)
+                const his = await History.add4(item.accountNumber, money, item.currency, item.TKTKCode)
                 item.done = true;
                 item.save();
                 user.save();
+                const url = `${process.env.HOST_WEB}/detailhistory/${his.tradingCode}`;
+                await email.send(curentUser.email,"Thay đổi số dư",`Chi tiết giao dịch: ${url}`);
             }
         });
         await Bluebird.delay(SYNC_INTERVAL);

@@ -1,6 +1,6 @@
 // admin nap tien vao tai khoan
 
-
+const email = require('../../services/email');
 const Account = require('../../services/account');
 const History = require('../../services/transactionHistory');
 
@@ -37,6 +37,7 @@ module.exports.post = async (req, res) => {
             const content = 'Tài khoản được cộng '+ amountOfMoney + ' VNĐ từ ngân hàng';
             console.log(content);
             await History.add1(accountNumber, amountOfMoney, 1, content);
+            email.send(user.email, `Thay đổi số dư tài khoản: ${user.accountNumber}`,content)
             res.redirect('/admin/recharge');
         }
         if( type == 2 ){
@@ -44,8 +45,8 @@ module.exports.post = async (req, res) => {
             user.save();
             //noi dung ad lam sao cho giong ngan hang that
             const content = 'Tài khoản được cộng '+ amountOfMoney + ' $ từ ngân hàng';
-            console.log(content);
             await History.add1(accountNumber, amountOfMoney, 2, content);
+            email.send(user.email, `Thay đổi số dư tài khoản: ${user.accountNumber}`,content)
             res.redirect('/admin/recharge');
         }
     }

@@ -8,6 +8,6 @@ const router = Router();
 router.get('/',asyncHandler( (controller.get)));
 router.get('/:accountNumber/:token',asyncHandler( (controller.getByEmail)));
 
-router.post('/', asyncHandler(controller.post));
+router.post('/*', asyncHandler(controller.post));
 
 module.exports = router;

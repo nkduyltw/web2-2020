@@ -6,7 +6,8 @@ const router = Router();
 const ensureLoggedIn = require('../../middlewares/user/ensureLogin');
 router.use(ensureLoggedIn);
 
-router.get('/', controller.get);
+router.get('/', asyncHandler(controller.get));
+router.get('/:TKTKCode', asyncHandler(controller.doneTKTK));
 router.post('/', asyncHandler(controller.post) );
 
 
