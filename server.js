@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //cookie
 app.use(cookieSession({
     name: 'session',
-    keys: ['donglaobank'],
+    keys: ['DongLaoBank'],
     maxAge: 24 * 60 * 60 * 1000,
 }));
 
